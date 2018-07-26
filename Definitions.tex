@@ -1,0 +1,23 @@
+\begin{itemize}
+    \item \textbf{Transcription Factor}: Protein affecting the level of transcription of a specific set of genes. A transcription factor is qualified as activator or repressor depending on whether it increases of represses the expression of its target gene(s). It has to be noted that the activator/repressor qualifier applies to the interaction between the TF and a given gene rather than on the TF itself, since a factor can activate some genes and repress other ones. Transcription factors are qualified of specific or global depending on whether they act on a restricted or a large number of genes (the boundary between specific and global factors is somewhat arbitrary).
+
+    Mechanisms: DNA‐binding transcription factors act by binding to specific genomic locations, called transcription factor binding sites. Transcription factor may also act indirectly on the expression of their target genes by interacting with other transcription factors. For example, the yeast repressor Gal80p does not bind DNA, but interacts with the DNA‐binding transcription factor Gal4p and prevents it from activating its target genes.
+    \item \textbf{TFBS}: Position on a DNA molecule where a transcription factor (TF) specifically binds. By extension, the sequence of the bound DNA segment. Note that there is a frequent confusion in the literature between the concepts of binding site and binding motif. We recommend to reserve the term ‘site’ to denote the particular sequence (genomic or artificial) where a factor binds, and the term ‘motif’ for the generic description of the binding specificity, obtained by synthesizing the information provided by a collection of sites.
+    
+    \item \textbf{Transcription Factor Binding Motif}: Representation of the binding specificity of a transcription factor, generally obtained by summarizing the conserved and variable positions of a collection of binding sites. Several modes or representation can be used to describe TFBM: consensus, position‐specific scoring matrices, Hidden Markov models.
+    
+    
+
+    \item \textbf{cis-regulatory Element}: A cis‐regulatory element is a short genomic region that exerts a positive or negative effect on the level of transcription of a neighbouring gene by mediating the interaction between sequence‐specific DNA‐binding transcription factors and the promoter of their target gene
+    \item \textbf{cis-regulatory Region/Module}: A cis‐regulatory module is a genomic region that combines multiple cis‐regulatory elements, mediating the interaction between several transcription factors and a promoter. CRMs are qualified of homotypic when they are essentially composed of multiple binding sites for a single transcription factor, or heterotypic if they combine sites bound by several distinct transcription factors. A CRM typically covers a few tens to a few hundreds base pairs.
+
+    \item \textbf{Enhancer}: Regulatory sequence of a gene responsible for increasing transcription from it.
+
+    Operational definition describing a sequence that increases transcription from a promoter that is linked to the enhancer in cis. A defining feature of enhancers is that they can exert their effects independently of orientation relative to the promoter and with some flexibility with respect to distance from the promoter. The definition does not specify the nature of the assay used to assess the enhancer effect or the size of the increase in transcription. Analysis of specific enhancers has shown that they contain multiple binding sites for different transcription factors which in turn recruit auxiliary factors. Together, these factors form a complex called the enhanceosome.
+
+    
+\end{itemize}
+
+    Transcription Factors are just proteins that can do things. They bind to Transcription Factor Binding Sites which are DNA sequences. You can classify TFs into either Activators or Repressors according to whether or not they activate or repress their target genes. TFBS are an example of a cis-regulatory element. These TFBS take the TFs and act on the promoters on a gene (promoter is the bit that initiates the transcription). When you have a bunch of these CREs hanging out together you have a cis-regulatory module. Enhancers increase the likelihood that trnascription happens. One way to characterize enhancers is that if they are deleted, then this provokes a reduction in expression of the target gene. 
+    
+    One of the main things we would like to know is how we can computationally identify these enhancer regions. Are enhancers made up of multiple CREs (i.e. are they CRMs) or can they only be made up of one?
