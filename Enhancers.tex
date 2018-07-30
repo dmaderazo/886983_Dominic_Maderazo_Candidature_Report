@@ -66,14 +66,31 @@
         
         \subsection{Enhancer Identification}
         
-        The identification of enhancers regions in DNA has been a subject of intense study since their discovery in the late 70s and is an active field of research.
-        Conservation of sequence across species as a single metric has been used for the identification of enhancers. This approach has proven useful in the past, but in the context of cardiac enhancers, relatively few have been found. Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify regions of interest~\cite{blow2010chip}. It has been shown in tissue specific studies that gene expression is much higher conserved than TF binding. Positive correlation with combinatorial TF binding and transctipion levels of closeby genes~\cite{wong2014decoupling}. This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
+        The identification of enhancers regions in DNA has been a subject of intense study since their discovery in the late 70s and is an active field of research. Traditionally, wet lab assays have been used for their identification~\cite{rosenthal198772}. However, bioinformaticians have been turning to more mathematical, computational and statistical approaches in this problem. 
+
+        Here are some of the difficulties associated with the identification of enhancers:
+        	\begin{itemize}
+        		\item 
+        		\item
+        		\item
+        		\item 
+        	\end{itemize}
+        Some of the difficulty in the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. Essentially, the sequence in an enhancer binding site may differ through mutation, but the ensemble required for the expression and regulation of genes is still able to express carry out expected function. This conservation of function, without conservation of sequence can be a weakness for aligment based comparative genomics techniques. 
         
-        Some of the difficulty in the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. Essentially, the sequence in an enhancer binding site may differ through mutation, but the ensemble required for the expression and regulation of certain genes is still able to express the gene in ways that are expected. This conservation of function, without conservation of sequence can be a weakness for aligment based comparative genomics techniques. 
+        The basis for the computational identification of TFBSs is as follows: Users typically provide a collections of regions flanking genes that are thought to be coregulated, computational tools are then used to identify DNA statistically overrespresented sequence motifs. A variety of techniques have been developed for the identification of TFBS~\cite{tompa2005assessing}. It has been shown in tissue specific studies that gene expression is much higher conserved than TF binding. Positive correlation with combinatorial TF binding and transctipion levels of closeby genes~\cite{wong2014decoupling}. However, the results of such computational tools still need additional work to be classified as enhancers. 
         
+        A conservation based approach has proven useful in the past when identifying TFBSs, but in the context of enhancers relatively few have been found. Although conservation of sequence across species as a single metric for enhancer idenfication has been used in the past, it alone is not sufficient to identify enhancer activity~\cite{blow2010chip}. Instead, it is more typical to incorporate more information about the cellular sytem or pathway of interest. 
+        % Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify regions of interest. 
+        This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
+
+        Epigenetic marks have been used in the computational identification of transcription factor binding sites. Villar et al.~\cite{villar2015enhancer} used a combination of methylation and acetylation data to identify and study enhancer regions and promoter sequences in a genome wide study; they concluded that in mammalian species recently evolvedd enhancers are a the dominant feature in the regulatory landscape.
+
         % That doesn't mean that there is no loss of sequence c /onservation. 
         
-        We have some data in the form of chromatin immunoprecipitaion followed by sequencing (ChIP-Seq) about the monomethylation of histone H3 at lysine 4 (H3K4me1). This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}.
+        We have some data in the form of chromatin immunoprecipitaion followed by sequencing (ChIP-Seq) about the monomethylation of histone H3 at lysine 4 (H3K4me1). This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
+
+        More recently, methods aimed specificically at the idenfication of enhancers have used epigenetic marks.
+
 
          % This denotes the methylation status of a histone. This the methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
         %https://epigenie.com/key-epigenetic-players/histone-proteins-and-modifications/histone-h3k4/
@@ -95,7 +112,15 @@
         
         A direct alignment based approach might not be the best way since these things display modest or no conservation. Sequence conservation does not provide clues to function, even if it is identified as an enhancer~\cite{pennacchio2013enhancers}
         
-        
+
+        \subsection{Mathematical Techniques}
+        \begin{itemize}
+        	\item Unsupervised: K-means, HMM
+        	\item Supervised: Artificial Neural Networks, Decision Trees, Random Forest
+        	\item Bayesian Segmentation and classification? (What is this)
+        	\item Alignment Free Sequence comparison 
+        \end{itemize}
+
         % We have many different 
         % \subsection{How are they found in the wet lab?}
             
