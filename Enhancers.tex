@@ -8,17 +8,21 @@
         There are typically two ways that gene expression can be altered, giving rise to different outcomes; the first being a direct alteration of the genetic sequence. A mutation in the DNA sequence of a gene gene can result in the organism having a different genotype.        % A type of mutation known as a single nucleotide polymorphism, that is, the substitution of a single nucleotide base for another.
         Sickle cell anaemia is the result of the mutation of just a single nucleotide and affects the haemoglobin carrying capacity of blood cells, causing the sufferer to develop an array of health complications such as strokes~\cite{clancy2008dna}. This disease is an extreme case of what can go wrong when mutations occur in DNA. Mutations in organisms that lead to expression of genotypes that are beneficial for an organism can be positively selected for in an organism in an appropriate context. Whether a mutation that resulting in a dfferent genotype is beneficial or not for an organism is context dependent, but this is essentially the corner stone of evolution. Fortunately, there is typically some redundancy when it comes to the genotype of an organism and mutations considered beneficial are often selected for.
         
-        The other mechanism/explanation for changes in gene expression is through epigenetic factors; by definition, epigenetic changes are brought about without changes to the DNA sequence itself. There are many more epigenetic factors involved in the process of regulation, such as RNA, acetylation, phosphorylation and more~\cite{geiman2002chromatin, jaenisch2003epigenetic,holoch2015rna, waterland2003transposable}. Each play important roles in the grand scheme of regulating gene expression. For the purpose of this report, the way chromatin remodelling, methylation and certain TFs interact will be the examples discussed here.
+        The other mechanism for changes in gene expression is through epigenetic factors. Epigenetics is the study of heritable mechanisms for regulating gene expression that are not linked with direct changes to DNA sequences~\cite{holliday2006epigenetics}. There are many epigenetic factors involved in the process of regulation, such as RNA, acetylation, phosphorylation and more~\cite{geiman2002chromatin, jaenisch2003epigenetic,holoch2015rna, waterland2003transposable}. Each play important roles in the grand scheme of regulating gene expression. For the purpose of this report, the way chromatin remodelling, methylation and certain TFs interact will be the examples discussed here.
 
 
         Regulation at the transcriptional level requires the orchestrated efforts of a diverse range of factors, proteins and enzymes with a variety of roles. Among these, a notable example are TFs, as the initiation of the transcription and the recruitment of other factors depends on interactions between TFs and DNA~\cite{lemon2000orchestrated}. The modification of the way these factors interact can affect the final expression profile. 
         
         Transcription factor binding sites (TFBSs) are often described as \emph{cis}-regulatory elements (CREs), since they are often found in \emph{cis} or on the same chromosome that their target gene can be found. These TFBSs are then classified according to their function; either as silencers, promoters, insulators and enhancers~\cite{gaszner2006insulators, gross1988nuclease, li1999locus}. Enhancers are segments of DNA, usually a few 100 base pairs in length, that act as platforms for the recruitment of TFs for the regulation of transcription~\cite{spitz2012transcription}. Regardless of the type of CRE, the main mechanism by which they carry out their function is through TF binding to degenerate/non-coding sequences in the DNA. Spitz and Furlong~\cite{spitz2012transcription} provide a review of the importance of enhancers and how their interactions with each other to form enhancer complexes and different models. 
         
-        In order for these TFs to bind to DNA, they require access to their target binding sites. As mentioned earlier, DNA is packaged into chromatin. Depending on the configuration of the packaging, this may hinder or facilitate the expression of a gene by either limiting or increasing the accessibility to regions of DNA~\cite{li2007role}. Chromatin remodelling is the process of repackaging the chromatin and changing the accessibility to different regions in the DNA. For examples, genes located in closed chromatin can be silenced due to the binding sites required for the intiation of transcription not being able to be reached.
+        In order for these TFs to bind to DNA, they require access to their target binding sites. As mentioned earlier, DNA is packaged into chromatin. Depending on the configuration of the packaging, this may hinder or facilitate the expression of a gene by either limiting or increasing the accessibility to regions of DNA~\cite{li2007role}. A particular chromatin structure to to maintain proper gene expression. It has been shown that failure to maintain such proper structre can result in changes in gene expression~\cite{ehrlich2001dna}. Chromatin remodelling is the process of repackaging the chromatin and changing the accessibility to different regions in the DNA. For examples, genes located in closed chromatin can be silenced due to the binding sites required for the intiation of transcription not being able to be reached.
+
+        Histone methylation is the addition of methyl groups to proteins making up the histone proteins. This is of interest because the methylation of histones is able to influence the chromatin landscape, affecting the DNA interactions with proteins and the stability of gene spression~\cite{jaenisch2003epigenetic, whetstine2009histone}. DNA found in histone methylated regions are wound tightly around histones and genes associated with these regions are typically transcriptionally silent. The remodelling of chromatin through histone methylation can alter the accessibility of transcriptional machinery to reach their target genes~\cite{gibney2010epigenetics, holoch2015rna}.
 
         
-        The framework that I propose will be one where we use methylation data, collected by one of of our collaborators, to infer the state of chromatin and subsequently, the motifs of sequences that area candidates for TFBSs that we then compare in an alignment free algorithm.
+        
+
+        % The framework that I propose will be one where we use methylation data, collected by one of of our collaborators, to infer the state of chromatin and subsequently, the motifs of sequences that area candidates for TFBSs that we then compare in an alignment free algorithm.
 
         
         
@@ -50,7 +54,7 @@
 % 		will be placed on a subset of TFs. We would like to identify and classify these enhancers at a stage
 % 		at a sequence level.
 % \end{itemize}
-        \textbf{What is an enhancer}
+
         
         % TF binding sites (TFBS) are divided into categories according to the function associated with the TFs that bind to that site.
         % We would like to focus on the category known as Enhancers. Enhancers are a type of TFBS that enhance or upregulate the 
@@ -63,42 +67,39 @@
         \subsection{Enhancer Identification}
         
         The identification of enhancers regions in DNA has been a subject of intense study since their discovery in the late 70s and is an active field of research.
-        Conservation of sequence across species as a single metric has been used for the identification of enhancers. This approach has proven useful in the past, but in the context of cardiac enhancers, relatively few have been found. Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify enhancer regions~\cite{blow2010chip}. This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
+        Conservation of sequence across species as a single metric has been used for the identification of enhancers. This approach has proven useful in the past, but in the context of cardiac enhancers, relatively few have been found. Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify regions of interest~\cite{blow2010chip}. It has been shown in tissue specific studies that gene expression is much higher conserved than TF binding. Positive correlation with combinatorial TF binding and transctipion levels of closeby genes~\cite{wong2014decoupling}. This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
         
+        Some of the difficulty in the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. Essentially, the sequence in an enhancer binding site may differ through mutation, but the ensemble required for the expression and regulation of certain genes is still able to express the gene in ways that are expected. This conservation of function, without conservation of sequence can be a weakness for aligment based comparative genomics techniques. 
         
+        % That doesn't mean that there is no loss of sequence c /onservation. 
         
-        To compound the difficulty in the identification of enhancers, they have show conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. Essentially, the sequence in an enhancer binding site may differ through mutation, but the ensemble required for the expression and regulation of certain genes is still able to express the gene in ways that are expected. This conservation of function, without conservation of sequence can be a weakness for aligment based comparative genomics techniques. 
-        
-        
-        
-        
-        That doesn't mean that there is no loss of sequence conservation. It has been shown in tissue specific studies that gene expression is much higher conserved than TF binding. Positive correlation with combinatorial TF binding and transctipion levels of closeby genes~\cite{wong2014decoupling}
-        
-        We have some data in the form of ChIP-Seq h3K4me1. This denotes the methylation status of a histone. This particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
+        We have some data in the form of chromatin immunoprecipitaion followed by sequencing (ChIP-Seq) about the monomethylation of histone H3 at lysine 4 (H3K4me1). This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}.
+
+         % This denotes the methylation status of a histone. This the methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
         %https://epigenie.com/key-epigenetic-players/histone-proteins-and-modifications/histone-h3k4/
-        While this association has been used to identify active and primed enhancers, it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}
         
-        The many faces of histone lysine methylation 2002)
         
-        Revisit Spitz and Furlong to see what sort of idease we have to give an overlay of what a TF is and how we have different models for regulation. 
+        % The many faces of histone lysine methylation 2002)
+        
+        % Revisit Spitz and Furlong to see what sort of idease we have to give an overlay of what a TF is and how we have different models for regulation. 
         
        
         
         
         
-        As an example, the remodelling of chromatin through histone methylation can alter the accessibility of transcriptional machinery to reach their target genes~\cite{gibney2010epigenetics, holoch2015rna}. 
+       . 
         
         % Changes in gene expression is primarily driven by direct changes in the sequence (genetic) or changes in epigenetic factors involved in the expression process, such as chrmomatin remodelling through histone methylation altering accessibility between transcriptional machinery and their target gene~\cite{gibney2010epigenetics, holoch2015rna }.% (RNA CAN ALSO REGULATE GENE EXPRESSION MAYBE) 
-        Epigenetics is important~\cite{holliday2006epigenetics}
-        DNA Methylation is super important when considering stability of gene epxression~\cite{jaenisch2003epigenetic}
-        
-        Comparative genomics might not be the best way since these things display modest or no conservation. Sequence conservation does not provide clues to function, even if it is identified as an enhancer~\cite{pennacchio2013enhancers}
+        % Epigenetics is important~\cite{}
         
         
-        We have many different 
-        \subsection{How are they found in the wet lab?}
+        A direct alignment based approach might not be the best way since these things display modest or no conservation. Sequence conservation does not provide clues to function, even if it is identified as an enhancer~\cite{pennacchio2013enhancers}
+        
+        
+        % We have many different 
+        % \subsection{How are they found in the wet lab?}
             
-        \subsection{How are they found computationally?}
+        % \subsection{How are they found computationally?}
         
         
         %     So, transcription factors are proteins that can bind to DNA. These proteins are responsible for the initiation and regulation of transcription. Something about gene control comes from regulation. 
