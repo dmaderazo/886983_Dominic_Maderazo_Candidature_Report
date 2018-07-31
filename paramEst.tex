@@ -1,0 +1,17 @@
+Maximum likelihood estimation is a frequentist statistical technique for infering parameters. Given a density $f(x|\theta)$, and a set of sample values $x_i,\ldots,x_n$, the likelihood fucntion is defined as  
+	\begin{equation}
+		p(\theta|D) = \prod_{i=1}^{n}f(x_i|\theta)
+	\end{equation}
+where $X$ denotes the collection of data. The maximum likelihood estimate of the parameter $\theta$, which will be denoted by $\hat{\theta}$ is the value that maximises $L(\theta|X)$. For simple problems analytic solutions may exist. In practice, such solutions are intractable and computational methods used instead.
+
+The advantage using a Bayesian framework is that rather than giving point estimates for quantities of interest, we are working in distributions and are able to give a have a measure of uncertainty. Given some prior distribution (belief) about our parameter $p(\theta)$ and the likelihood of the data, given the parameters $p(D|\theta)$ we can obtain what is known as the posterior distribution $ p(\theta|D)$ of the parameters given the data 
+    \begin{equation}
+        p(\theta|D) = \frac{p(D|\theta)p(\theta)}{p(D)}
+    \end{equation}
+In Bayesian inference, the marginal likelihood $p(D)$ is some constant and the rule is often written as 
+    \begin{equation}
+        p(\theta|D) \propto p(D|\theta)p(\theta).
+    \end{equation}
+It can be very difficult to sample from the posterior distribution analytically since there may be no closed form for the distribution, except in the most simple toy problems. In practice, Markov chain Monte Carlo (MCMC) is a standard technique used to sample from these distributions. 
+
+The basis of MCMC is taking a constructing a sequence of stochastic processes $\{X_0,X_1,\ldots,X_n\}$ with the property $p(X_k|X_{k-1},\ldots X_0) = p(X_k|X_{k-1})$ in such a way that the distribution $p(X)$ limits to some $\pi$. In the context of Bayesian inference, this $\pi$ is the posterior distribution that we would like to sample from.
