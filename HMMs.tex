@@ -1,4 +1,28 @@
 The following is a brief description of hidden Markov Models (HMMs) adapted from \cite{mesa2016hidden}.
 
 Let $x = (x_1,x_2,\ldots,x_n)$ be a sequence of observations where each of the residues $x_j$ takes values from a finite alphabet $D$. 
-Also $y = (y_1,y_2,\ldots,y_n)$ 
+Also $y = (y_1,y_2,\ldots,y_n)$ is a collection of states, where each $y_i$ belongs to $\mathcal{E}$, a finite set of states. The sequence $x$ can be thought of as a time series where the indeces $j$ are taken as discrete time steps. These models are considered 'hidden' because only sequence of residues $x$ is observable and but the sequence of states is unkown.
+
+The model starts at some initial state, produces a residue and moves to a new state and procudes a new residue. This continues until the end of the sequence. Let $P(x_i|y_i = k)$ denote the probability that the emission $x_i$ was produced by state $k$ at time $i$. Next, let the probability that a transition is made from state $k$ to state $l$ given by $P(y_{i+1} = l | y_i = k)$. The joint distribution for the probability the model transits path $y$ and generates the sequence $x$ is then
+	\begin{equation}
+		P(x,y) = \prod_{i=1}^{n} ]P(y_i|y_{i-1})P(x_i|y_i),
+	\end{equation}
+where $P(y_i|y_{i-1}) = P(y_{i} = l | y_{i-1} = k)$ and $P(x_i|y_i) = P(x_i|y_i = k)$. 
+
+The parameters of the model are the transisition probabilities and the emission probabilities. In practice, these parameters are estimated, for example with Expectation Maximization.
+
+There are three assumptions underlying the model and they are:
+	\begin{itemize}
+		\item The Markov property holds for the states $y_i$. That is $P(y_{i+1}|y_i,\ldots,y_1) = P(y_i|y_{i-1})$.
+		\item The Markov chain produced by the states $y$ is homogeneous. That is the probability of transitioning from one state to another is independent of time $i$. 
+		\item Conditional independence of observations. That is $x_i$ is only dependant on the state $y_i$. 
+	\end{itemize}
+
+An example of usage would be to assign the alphabet $D = \{A,C,G,T\}$ representing the four nucleotide bases found in DNA and the states as $\mathcal{E} = \{\text{intron}, \text{exon}, \text{intergenic region}\}$. These models have been used in computational biology \textbf{cite?}
+
+%albus, silas, salus, meris, janus, miles, myles, regis, remus  
+
+
+
+
+

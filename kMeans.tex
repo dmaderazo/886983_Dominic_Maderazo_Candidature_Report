@@ -1,0 +1,22 @@
+The aim of K-means algorithm is for putting $N$ data points in a space of $I$-dimension into $K$ clusters. Let $S$ denote the space the data is found in. Denote the data points as $\{x^{(n)}\}$ where $n$ runs from $1$ to $N$ and each $x^{(n)}\in S$. Further, let $d$ be a metric that is defined over $S$; $d$ is usually Euclidian. The algorithm is initialized with the setting of $K$ means $\{m^{(k)}\}, usually to random values. The algorithm operates in two steps; an assignment step, and an update step.
+
+In the Assignment step, each data ppoint is assigned to the nearest mean. The guess for cluster $k^{(n)}$ that $x^{(n)}$ belongs to by $\hat{k}^{(n))}$, where
+	\begin{equation}
+		$\hat{k}^{(n)}$ = \argmin_k\{d(m^{(k)},x^{(n)})\}.
+	\end{equation}
+In the event of a tie, $\hat{k}^{(n)}$ is set to the smallest $k$.
+
+In the Update step, 
+
+Given a set of means $\{k^{(n)}\}$, each data point $x^{(n)}$ is assigned to a cluster according to  
+	\begin{equation}
+		\argmin_{k\in K}\{d(m^{(k)},x^{(n)})\}
+	\end{equation}
+where $K$ is the set of clusters, defined by the mean $m$. Now, let the set of the mean of the data assigned to cluster $k$ be $S_k$.
+
+The update step then consists of updating the means according to
+	\begin{equation}
+		k_i = \frac{1}{|S_k|}\sum_{x_i \in S_i} x_i
+	\end{equation} 
+
+These two steps are iterated over until a stopping criteria is met. Typically, when no data points change clusters, the algorithm is said to have converged.
