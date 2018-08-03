@@ -5,7 +5,7 @@ Also $y = (y_1,y_2,\ldots,y_n)$ is a collection of states, where each $y_i$ belo
 
 The model starts at some initial state, produces a residue and moves to a new state and procudes a new residue. This continues until the end of the sequence. Let $P(x_i|y_i = k)$ denote the probability that the emission $x_i$ was produced by state $k$ at time $i$. Next, let the probability that a transition is made from state $k$ to state $l$ given by $P(y_{i+1} = l | y_i = k)$. The joint distribution for the probability the model transits path $y$ and generates the sequence $x$ is then
 	\begin{equation}
-		P(x,y) = \prod_{i=1}^{n} ]P(y_i|y_{i-1})P(x_i|y_i),
+		P(x,y) = \prod_{i=1}^{n} P(y_i|y_{i-1})P(x_i|y_i),
 	\end{equation}
 where $P(y_i|y_{i-1}) = P(y_{i} = l | y_{i-1} = k)$ and $P(x_i|y_i) = P(x_i|y_i = k)$. 
 
