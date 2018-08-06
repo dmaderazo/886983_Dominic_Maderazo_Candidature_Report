@@ -41,8 +41,10 @@
         The remodelling of chromatin through histone methylation can alter the accessibility of transcriptional machinery allowing TFs to reach their target genes~\cite{gibney2010epigenetics, holoch2015rna}. 
         
         
+        Talk more about the specificity of heart enhancers and why they are important.
 
-        
+        We are kinda interested in cardiac tissue because our collaborats are researching this. (Really shallow)
+        FAR OUT. 
         
 
         % The framework that I propose will be one where we use methylation data, collected by one of of our collaborators, to infer the state of chromatin and subsequently, the motifs of sequences that area candidates for TFBSs that we then compare in an alignment free algorithm.
@@ -91,7 +93,8 @@
         
         The identification of enhancers regions in DNA has been a subject of intense study since their discovery in the late 70s and is an active field of research. Traditionally, wet lab assays have been used for their identification~\cite{rosenthal198772}. However, bioinformaticians have been turning to more mathematical, computational and statistical approaches in this problem. 
         
-       {SOME OF THE PROBLEM THAT WE HAVE WHEN TRYING TO FIND ENHANCERS IS THAT:
+
+        {SOME OF THE PROBLEM THAT WE HAVE WHEN TRYING TO FIND ENHANCERS IS THAT:
             \begin{itemize}
                 \item MANY ENHANCERS ARE ACTIVE AT A GIVEN TIME
                 \item MANY TO MANY CORRESPONDENCE BETWEEN GENES BEING REGULATED AND ENHANCERS REGULATING
@@ -99,6 +102,40 @@
                 
             \end{itemize}
         }
+
+        Some of the problems associated with the characterization of enhancer regions are as follows:
+        	\begin{itemize}
+        		\item Many enhancers are active at a given time in any given tissue. 
+        		\item There is a many-to-many correspondence between enhancers and genes. That is, a single enhancer may be acting on multiple genes and each gene may have multiple enhancers acting on it. 
+        		\item Traditional wet-lab assays can can find only one enhancer at a time. CITATION
+        	\end{itemize}
+        By turning to more computational approaches to the identification of enhancers, the approach is now using computational tools to identify enhancers and then attempting to verify experimentally in the lab.
+
+        Three main approaches to computational identification are
+        	\begin{itemize}
+        		\item sequence based 
+        		\item comparative genomics
+        		\item using epigenetic marks
+        	\end{itemize}
+
+        Each of these methods have their own advantages and disadvantages and will be discussed below.
+
+        Sequence based methods rely mainly on statistical techniques. Researchers will input genes and flanking regions that are believed to be coregulated. These statiscal techniques then aim to identify motifs that are statistically over-represented against some background noise. The main difference between these techniques is in the choice of definition of over-representation and what constitutes as noise.
+
+        Comparative genomics is powerful because it has been used in the past to identify highly conserved genetic regions across species. The downfall comes from the fact that enhancers do not necissarily display the same type of conservation as those of coding regions, but are able to maintain function. In fact, heart tissue is a solid example of where the enhancers are not conserved but maintain function. 
+
+        % S H O W D O W N?
+
+        % How do these methods perform
+
+        % Messaging Mirana if she's back from Maternity Leave. Have someone there who sees things as
+        % one of their projects. Collaborator rather than a resource. 
+
+        % MEMEs Ask Mirana about the package that they've developed. 
+
+
+        % Make a function where the input is a list,
+        % the output of that function is a table where each row is the summary of the information in that list 
         % Here are some of the difficulties associated with the identification of enhancers:
         % 	\begin{itemize}
         % 		\item 
@@ -106,7 +143,24 @@
         % 		\item
         % 		\item 
         % 	\end{itemize}
-        Some of the difficulty in the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. The sequence in an enhancer binding site may differ through mutation or the rearrangement of elements, but the ensemble required for the expression and regulation of genes is still able to carry out expected function. This conservation of function, without conservation of sequence can be a weakness for aligment based comparative genomics techniques. 
+        What is a comparative method?
+        Give an example of a comparative method
+        What is good about it?
+        What isn't so good about it?
+
+
+        Comparative techniques that were originally developed for the identification of functional coding regions were adapted to the identification of TFBSs like enhancers. At the core of these methods is sequence conservation; the idea that functional sequences are under some type of evolutionary pressure to conserve themselves and maintain function. These methods have been used with success in the prediction of functional non-coding elements using large-scale genomic comparisons~\cite{aparicio2002whole, gottgens2000analysis, loots 2000identification, mouse2002initial}. However, there are limitations to this approach.
+
+        Some of the difficulty in the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution}. The sequence in an enhancer binding site may differ through mutation or the rearrangement of elements, but the ensemble required for the expression and regulation of genes is still able to carry out expected function. This conservation of function, without conservation of sequence can be a weakness for comparative genomics techniques. 
+
+        An example of a comparitive based method is Change Point~\cite{keith2006segmenting}. To attempt to overcome some of the weaknesses of comparative techniques, the program utilizes information about CG content and transition/transvertion ratio in conjuction to conservation. The program encodes an alignment into a string representing the information discussed. A Bayesian heirarchical model to segment the string and allocate segments into distinct groups with homogeneous properties. Since the inception of the program, it has been used to investigate genomic structure and for the identification of TFBS~\cite{alagma2014investigating, algama2017genome}. 
+
+        % This program takes an alignment and produces an encoded string that represents various information such as: conservation, CG content, transition/transvertion ratio. 
+
+        % It then segments the string and allocates the segments into distinct groups with homogeneous properties. 
+
+        Now talk about epigenetic
+        ones and sequence based ones. Common downfalls. Also HEART STUFF
         
         The basis for the computational identification of TFBSs is as follows: Users typically provide a collections of regions flanking genes that are thought to be coregulated, computational tools are then used to identify DNA statistically overrespresented sequence motifs. A variety of techniques have been developed for the identification of TFBS~\cite{tompa2005assessing}. It has been shown in tissue specific studies that gene expression is much higher conserved than TF binding. Positive correlation with combinatorial TF binding and transctipion levels of closeby genes~\cite{wong2014decoupling}. However, the results of such computational tools still need additional work to be classified as enhancers. 
         
