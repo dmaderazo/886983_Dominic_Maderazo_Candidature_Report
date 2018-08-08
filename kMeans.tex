@@ -1,8 +1,8 @@
-The aim of K-means algorithm is for putting $N$ data points in a space of $I$-dimension into $K$ clusters. Let $S$ denote the space the data is found in. Denote the data points as $\{x^{(n)}\}$ where $n$ runs from $1$ to $N$ and each $x^{(n)}\in S$. Further, let $d$ be a metric that is defined over $S$; $d$ is usually Euclidian. The algorithm is initialized with the setting of $K$ means $\{m^{(k)}\}, usually to random values. The algorithm operates in two steps; an assignment step, and an update step.
+The aim of K-means algorithm is for putting $N$ data points in a space of $I$-dimension into $K$ clusters. Let $S$ denote the space the data is found in. Denote the data points as $\{x^{(n)}\}$ where $n$ runs from $1$ to $N$ and each $x^{(n)}\in S$. Further, let $d$ be a metric that is defined over $S$; $d$ is usually Euclidian. The algorithm is initialized with the setting of $K$ means $\{m^{(k)}\}$, usually to random values. The algorithm operates in two steps; an assignment step, and an update step.
 
-In the Assignment step, each data ppoint is assigned to the nearest mean. The guess for cluster $k^{(n)}$ that $x^{(n)}$ belongs to by $\hat{k}^{(n))}$, where
+In the Assignment step, each data point is assigned to the nearest mean. The guess for cluster $k^{(n)}$ that $x^{(n)}$ belongs to by $\hat{k}^{(n))}$, where
 	\begin{equation}
-		$\hat{k}^{(n)}$ = \argmin_k\{d(m^{(k)},x^{(n)})\}.
+		\hat{k}^{(n)} = \argmin_k\{d(m^{(k)},x^{(n)})\}.
 	\end{equation}
 In the event of a tie, $\hat{k}^{(n)}$ is set to the smallest $k$.
 
