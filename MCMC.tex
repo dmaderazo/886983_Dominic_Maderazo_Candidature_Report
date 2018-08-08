@@ -1,0 +1,69 @@
+
+	The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
+	%obtained in doing Bayesian analysis. 
+	{\color{red}This is achieved by constructing a Markov Chain that is aperiodic and irreducible, (therefore ergodic) to ensure that the limiting distribution of the Markov chain is the the one that is desired to be sampled from. This method guarantees that $X_t\rightarrow\pi$ in in distribution $t\rightarrow\infty$}
+% 	{\color{red}Apparently we only ever make Markov Chains that are reversible. I think this might be so that the detailed balance equations hold, which is sufficient condition for ergodicity(?)}
+% 	\textbf{Practical considerations:} Mixing, convergence, proposal distributions, how long to run the chain. 
+	\subsection{Metropolis-Hastings Algorithm}
+	The Metropolis-Hastings (MH) Algorithm is the standard introduction to MCMC methods for sampling. Presented in 1970 by Hastings \cite{hastings1970monte}, it is an extension of the algorithm originally put forth by Metropolis in 1953 \cite{metropolis1953equation}.
+	The steps for the algorithm, also presented in Algorithm~\ref{alg:MetHast}, are as follows. Let $\pi(x)$ be the target density (up to a constant), defined on some set ${\mathscr X}$.
+	To initialize the algorithm let $x_0$ to be the first sample, chosen arbitrarily. In each iteration $g(y|x)$ 
+% 	({\color{red}Is it more conventional to write $g(Y|X)$ or does it not matter as long as it is consistent?}), 
+    known as the {\color{red}transition kernel} is sampled from to generate a candidate point. The candidate point $y$ is accepted with probability 
+	    \begin{equation}
+	        \alpha(x,y) = min\left(1,\frac{\pi(y)g(x|y)}{\pi(x)g(y|x)}\right).
+	    \end{equation}
+	If the candidate point is accepted, $x_{t+1} = y$, otherwise, $x_{t+1} = x_t$ and the next iteration is begun. In the original Metropolis algorithm, $g$ is chosen to be symmetric; that is $g(y|x) = g(x|y)$. However, in general $g$ can be arbitrary. There are smart ways to tune $g$ to ensure that the chain mixes adequately.
+	
+	\begin{algorithm}[H]
+	\label{alg:MetHast}
+ %\KwData{this text}
+ %\KwResult{how to write algorithm with \LaTeX2e }
+ Set $x_0$, $t=0$\; 
+ \Repeat{converged}{
+  Draw $y\sim g(y|x)$\;
+  Draw $u\sim U(0,1)$\;
+  \eIf{$u<\alpha(x,y)$}{
+   $x_{t+1} = y$\;
+   }{
+    $x_{t+1} = x_t$\;
+  }
+  Increment $t$\;
+ }
+% 		\begin{enumerate}
+% 			\item Generate a candidate point $x'$ from $g(x'|x_0)$.
+% 			\item Calculate the acceptance probability
+% 				\begin{equation}
+% 				\alpha = \frac{f(x')}{f(x_t)}
+% 				\end{equation}
+% 				and generate $r\sim U(0,1)$ and compare with $\alpha$ to decide whether or not to accept the candidate point probabilistically.
+% 			\item Repeat steps 1. and 2.
+% 		\end{enumerate}
+% 	\subsection{Gibbs Sampler}
+% 	The Gibbs sampler is presented as a method for sampling from some distribution over a set ${\mathscr X}$ with dimension $n$. Let $x = (x_1,...,x_n)$ and let us denote the $i^{th}$ sample as $x^{(i)} = (x_1^{(i)},...,x_n^{(i)})$.
+
+
+ \caption{Metropolis-Hastings Algorithm}
+\end{algorithm}
+
+\subsection{Gibbs Sampler}
+In general, the quantity $x$ is a vector and standard MH updates all the components at once. In contrast to this, there exist a class of MCMC methods known as Gibbs samplers, that iteratively update the components of $x$. The Gibbs Sampler originally presented by  Geman and Geman \cite{geman1984stochastic} is an example of one of these and can be shown to be a special case of single component MH \cite{gilks1995markov}. 
+% Rather than updating the entirety of $x$ as in the MH Algorithm, there exist a class of MCMC algorithms that update components of $x$ in an iterative fashion, the most popular of these being the Gibbs Sampler, originally formulated by Geman and Geman \cite{geman1984stochastic}. 
+Denote $x_. = (x_{.,1},\ldots x_{.,h})$. Note that each of the components of $x$ may possibly be of differing dimension. 
+% ({\color{red} I suspect that this has something to do with efficiency. I.e. you might want to group components together that have 'nice' conditional distributions?}).
+Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldots x_{.,h})$, that is $x_{.,-i}$ comprises of all the components of $x_.$ except $x_{.,i}$. Gibbs sampling updates $x_{.,i}$ by drawing a candidate $y_i$ from $\pi(y_{.,i}|x_{.,-i})$, also known as the full conditional distribution. An advantage of the Gibbs Sampler is that all candidate points are accepted with probability 1.
+
+\begin{algorithm}[H]
+ %\KwData{this text}
+ %\KwResult{how to write algorithm with \LaTeX2e }
+ Set $x_0$, $t=0$\; 
+ \Repeat{converged}{
+    \For{$i$ = 1 to $h$}{
+  Draw $y\sim \pi(y_{t,i}|x_{t,-i})$\;
+  Set $x_{t,i} = y$
+  }
+  Set $x_{t+1} = x_t$\;
+  Increment $t$\;
+ }
+  \caption{Gibbs Sampling Algorithm}
+\end{algorithm}
