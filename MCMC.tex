@@ -1,5 +1,7 @@
+  Paste Markov Chain Stuff here. 
+	
 
-	The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
+  The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
 	%obtained in doing Bayesian analysis. 
 	{\color{red}This is achieved by constructing a Markov Chain that is aperiodic and irreducible, (therefore ergodic) to ensure that the limiting distribution of the Markov chain is the the one that is desired to be sampled from. This method guarantees that $X_t\rightarrow\pi$ in in distribution $t\rightarrow\infty$}
 % 	{\color{red}Apparently we only ever make Markov Chains that are reversible. I think this might be so that the detailed balance equations hold, which is sufficient condition for ergodicity(?)}
@@ -13,7 +15,7 @@
 	    \begin{equation}
 	        \alpha(x,y) = min\left(1,\frac{\pi(y)g(x|y)}{\pi(x)g(y|x)}\right).
 	    \end{equation}
-	If the candidate point is accepted, $x_{t+1} = y$, otherwise, $x_{t+1} = x_t$ and the next iteration is begun. In the original Metropolis algorithm, $g$ is chosen to be symmetric; that is $g(y|x) = g(x|y)$. However, in general $g$ can be arbitrary. There are smart ways to tune $g$ to ensure that the chain mixes adequately.
+	If the candidate point is accepted, $x_{t+1} = y$, otherwise, $x_{t+1} = x_t$ and the next iteration is begun. In the original Metropolis algorithm, $g$ is chosen to be symmetric; that is $g(y|x) = g(x|y)$. However, in general $g$ can be arbitrary. The choice of $g$ is non-trivial as there are ways to choose it such that the chain mixes adequately. %There are smart ways to tune $g$ to ensure that the chain mixes adequately.
 	
 	\begin{algorithm}[H]
 	\label{alg:MetHast}
@@ -51,7 +53,7 @@ In general, the quantity $x$ is a vector and standard MH updates all the compone
 % Rather than updating the entirety of $x$ as in the MH Algorithm, there exist a class of MCMC algorithms that update components of $x$ in an iterative fashion, the most popular of these being the Gibbs Sampler, originally formulated by Geman and Geman \cite{geman1984stochastic}. 
 Denote $x_. = (x_{.,1},\ldots x_{.,h})$. Note that each of the components of $x$ may possibly be of differing dimension. 
 % ({\color{red} I suspect that this has something to do with efficiency. I.e. you might want to group components together that have 'nice' conditional distributions?}).
-Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldots x_{.,h})$, that is $x_{.,-i}$ comprises of all the components of $x_.$ except $x_{.,i}$. Gibbs sampling updates $x_{.,i}$ by drawing a candidate $y_i$ from $\pi(y_{.,i}|x_{.,-i})$, also known as the full conditional distribution. An advantage of the Gibbs Sampler is that all candidate points are accepted with probability 1.
+Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldots x_{.,h})$, that is $x_{.,-i}$ comprises of all the components of $x_.$ except $x_{.,i}$. Gibbs sampling updates $x_{.,i}$ by drawing a candidate $y_i$ from $\pi(y_{.,i}|x_{.,-i})$, also known as the full conditional distribution. An advantage of the Gibbs Sampler over MH is that all candidate points are accepted with probability 1.
 
 \begin{algorithm}[H]
  %\KwData{this text}

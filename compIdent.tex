@@ -1,0 +1,95 @@
+
+        The identification of enhancers regions in DNA has been a subject of intense study since their discovery in the late 1970s and is an active field of research. Traditionally, wet laboratory assays have been used for their identification~\cite{rosenthal198772}. However, bioinformaticians are turning to more mathematical, computational and statistical approaches to address some of the difficulties associated with the characterization of these elements. 
+        
+        % Each of these methods have their own advantages and disadvantages and will be discussed below.
+        There is an increasing amount of data to with the genome and researchers are striving to utilize these in their methods. Enhancer identification typically occurs in two steps; the consolidation of different data types, and using computational methods to annotate DNA regions~\cite{kleftogiannis2015progress}. The computational methods of use are typically dependant on the type of data available and rely on a variety of underlying mathematics. A selection of these methods will be discussed below.
+        % With the increasing amount of available data that describes DNA, the modern practice of computational identification for enhancer regions involves the incorporation of various data types. Some example of data types that have been used are conservation \cite{visel2007enhancer}, chromatin profile of histone marks \cite{won2010genome} and chromatin accessibility combined with information about general TFBS \cite{boyle2010high}. Each of these data types provides different information about the state of DNA and will be discussed below. 
+        
+        % THese data types will be discussed below. 
+        
+        
+        % Sequence based methods rely mainly on statistical techniques. Researchers will input genes and flanking regions that are believed to be coregulated. These statiscal techniques then aim to identify motifs that are statistically over-represented against some background noise. The main difference between these techniques is in the choice of definition of over-representation and what constitutes as noise.
+
+        % Comparative genomics is powerful because it has been used in the past to identify highly conserved genetic regions across species. The downfall comes from the fact that enhancers do not necissarily display the same type of conservation as those of coding regions, but are able to maintain function. In fact, heart tissue is a solid example of where the enhancers are not conserved but maintain function. 
+
+        % S H O W D O W N?
+
+        % How do these methods perform
+
+        % Messaging Mirana if she's back from Maternity Leave. Have someone there who sees things as
+        % one of their projects. Collaborator rather than a resource. 
+
+        % MEMEs Ask Mirana about the package that they've developed. 
+
+
+        % Make a function where the input is a list,
+        % the output of that function is a table where each row is the summary of the information in that list 
+        % Here are some of the difficulties associated with the identification of enhancers:
+        % 	\begin{itemize}
+        % 		\item 
+        % 		\item
+        % 		\item
+        % 		\item 
+        % 	\end{itemize}
+        % What is a comparative method?
+        % Give an example of a comparative method
+        % What is good about it?
+        % What isn't so good about it? this
+        A group of computational methods rely on machine learning algorithms and pose the identification of enhancers as a classification problem. Users typically provide a collections of regions flanking genes that are thought to be regulated by similar groups of enhancers. Algorithms are then used to identify DNA sequence motifs that are statistically overrespresented in these regions. One popular suite of programs is the Multiple Expectation Maximization for Motif Elicitation (MEME) suite. The core MEME algorithm fits a mixture model to input a set of input sequences and discovers motifs in the DNA sequence that maximize a likelihood function of the model~\cite{bailey1994fitting}. This class of techniques has an advantage over alignment based ones as the input for the algorithm is a collection of unaligned sequences, so they are able to cope with the combinatorial rearrangement of regulatory regions. 
+         
+        The next class of techniques rely heavily on the comparison on DNA structure between two species.
+        These comparative techniques that were originally developed for the identification of functional coding regions and have been adapted to the identification of TFBSs like enhancers. At the core of these methods is sequence conservation; the idea that functional sequences are under some type of evolutionary pressure to conserve themselves and maintain function. These methods have been used with success in the prediction of functional non-coding elements using large-scale genomic comparisons~\cite{aparicio2002whole, gottgens2000analysis, loots2000identification, mouse2002initial}. An example of one is described below.
+
+       A popular comparative based approach is sequence segmentation. This method seeks to delineate the DNA by some feature and classify the segments according to properties of interest.
+            % Someone seriously decided to name their method LASAGNA and it makes use of a database called ORegAnno. The algorithm work on the assumption that TFBS contain a short, highly conserved stretch of DNA~\cite{lee2013lasagna}.
+        % Example of such a method is %LASAGNA~\cite{lee2013lasagna}% 
+        Example of such a method is Change Point~\cite{keith2006segmenting}. To attempt to overcome some of the weaknesses of comparative techniques that rely solely on conservation, Change Point also utilizes information about the frequency of nucleotide bases associated with function and transition/transvertion ratio. The program encodes a DNA alignment between different species into a string representing the information discussed. A Bayesian hierarchical model is used to obtain distributions for the positions of boundaries for segments in the string and classify them into distinct groups with homogeneous properties. Since the inception of the program, it has been used to investigate genomic structure and for the identification of TFBS~\cite{algama2014investigating, algama2017genome}. 
+        
+         A complication associated with some alignment based techniques for the identification of enhancers is the observed conservation of function across a large evolutionary distance, even if the sequences have diverged significantly~\cite{tautz2000evolution, pennacchio2013enhancers}. While it has been shown that TFBS show significantly higher conservation when their target gene is expressed in both species, it is not necessarily true that sequence conservation provide clues to function, even if an element is identified as an enhancer~\cite{hemberg2011conservation, pennacchio2013enhancers}.
+         The sequence in an enhancer binding site may differ through mutation or the combinatorial rearrangement of elements, but the ensemble required for the expression and regulation of genes is still able to carry out it's expected function~\cite{wong2014decoupling}. This conservation of function, without conservation of sequence can be a difficulty for alignment based, comparative genomics techniques. 
+        % This program takes an alignment and produces an encoded string that represents various information such as: conservation, CG content, transition/transvertion ratio. 
+
+        % It then segments the string and allocates the segments into distinct groups with homogeneous properties. 
+
+        % Now talk about epigenetic
+        % ones and sequence based ones. Common downfalls. Also HEART STUFF
+        Epigenetic markers are increasingly being used in computational identification. Villar et al.~\cite{villar2015enhancer} used a combination of methylation and acetylation data to identify and study enhancer regions and promoter sequences in a genome wide study; they concluded that in mammalian species recently evolved enhancers are a the dominant feature in the regulatory landscape. Depending on the type of epigenetic data available, researchers are able to incorporate information about the features of the chromatin landscape, histone methylation and active enhancers. 
+        
+        
+        ChromHMM is a program based on the Hidden Markov Model (HMM). 
+        
+        ChromHMM notes~\cite{ernst2010discovery}:
+            \begin{itemize}
+                \item Uses HMM
+                \item Input is epigenetic markers (potentially lots of them)
+                \item Output is different ``states" associated with different elements. Promoters, intergentc stuff, repressed.
+            \end{itemize}
+       
+       A more technical explanation of HMMs see Reference
+        
+        % A variety of these techniques have been developed in this vein for the identification of TFBS~\cite{tompa2005assessing}. 
+        
+        
+        
+        
+        % However, the results of such computational tools still need additional work to be classified as enhancers. 
+        
+        A conservation based approach has proven useful in the past when identifying TFBSs in comparative techniques, but in the context of enhancers relatively few have been found. Although conservation of sequence across species as a single metric for enhancer identification has been used in the past, it alone is not sufficient to identify enhancer activity~\cite{blow2010chip}. Instead, it is typical to incorporate more information about the cellular system or pathway of interest. 
+        % Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify regions of interest. 
+        This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
+
+        
+        
+        % However, some of the difficulties associated with epigenetic marks are as follows. Often these data are very cellular or pathway specific and thus any results obtained are tissue specific. 
+
+        % That doesn't mean that there is no loss of sequence c /onservation. 
+        Some of the problems associated with the characterization of enhancer regions are as follows:
+            \begin{itemize}
+        		\item Many enhancers are active at a given time in any given tissue. 
+        		\item There is a many-to-many correspondence between enhancers and genes. That is, a single enhancer may be acting on multiple genes and each gene may have multiple enhancers acting on it. 
+        		\item Traditional wet-lab assays can can find only one enhancer at a time. 
+        	\end{itemize}
+        	
+        	
+        We have some data in the form of chromatin immunoprecipitaion followed by sequencing (ChIP-Seq) about the monomethylation of histone H3 at lysine 4 (H3K4me1). This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
+        
