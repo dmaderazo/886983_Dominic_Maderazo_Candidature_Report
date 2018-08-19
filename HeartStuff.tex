@@ -1,0 +1,31 @@
+
+
+In this thesis, our interest lies in the identification and classification of certain regions in the DNA that help regulate the expression of genes in cardiac tissue. We seek to identify and classify active enhancers that are involved in the process of heart formation. Cardiac genes are of particular interest because it has been show that there is reasonable conservation of protein coding genes between different eukaryotic species, yet there is differences in physiological features such as the number of chambers in a heart. %\textbf{That need to be described below}. 
+
+The classical wet-laboratory technique for the identification of enhancers is using a protocol involving Chromatin immunoprecipitation followed by sequencing (ChIP-seq). A summary of the chIP-seq protocol is provided by \cite{collas2010current}:
+    \begin{enumerate}
+        \item Proteins bound to DNA are given a treatment to solidify their binding;
+        \item Cells in a sample are homogenized;
+        \item The chromatin is cut into segments;
+        \item The segments that have been bound to the protein of interest are selectively separated through immunoprecipitaion;
+        \item These DNA fragments are then used as input for sequencing.
+    \end{enumerate}
+These DNA fragments may be associated with TFBSs depending on the proteins that are being introduced and bound to DNA. The purpose of ChIP-seq is to investigate the interaction between proteins and DNA.
+
+There are variations of ChIP-seq that been used to find active enhancers in the past~\cite{visel2009chip}, but the protocol has its weaknesses. A standard method is the introduction of a protein associated with enhancer binding such as p300 and identifying the regions that it binds to, but this method is only able to identify a subset of active enhancers in a given tissue~\cite{heintzman2007distinct}. Identifying the subset of enhancers that are active in tissue and what genes they may be regulating is an extension of the problem of simply just searching for enhancer regions.
+
+Researchers have modified existing protocols in attempts to overcome some of the problems that exist. These modifications have been used to identify prospective cardiac regulatory sequences distinct from those found by standard protocols~\cite{he2011co}. These researchers investigated combinations of TFBSs to identify enhancers that are active in cardiac tissue with the hypothesis that certain combinations of TFBSs were present in in enhancer regions. This method proved fruitful as they were able to identify distinct putative regions and regions that were previously reported by others~\cite{blow2010chip}.%What these guys also did is they looked at combinations of transcription factors to identify the enhancer regions active in the heart.
+
+Computational methods applied for the identification of cardiac specific enhancers. A conservation based approach has proven useful in the past when identifying TFBSs in comparative techniques, but in the context of enhancers relatively few have been found. Although conservation of sequence across species has been used as a metric to identify enhancer regions, conservation alone is not sufficient to identify enhancer activity~\cite{blow2010chip}. This again highlights some of the drawbacks of relying heavily on conservation. Instead, there is a movement to incorporate more information about the cellular system or pathway of interest. 
+ 
+Researchers interested in cardiac tissues have had success with combining different types of data associated with DNA. They have combined ChIP-seq data for proteins associated with cardiac TFs, computationally predicted enhancers, enhancer associated monomethylation of histone H3 at lysine 4 (H3K4me1) modification H3K4me1 as well as conservation to identify enhancer regions and link change of the regulatory landscape with congenital heart disease ~\cite{smemo2012regulatory}. These researchers have found evidence for a large population of poorly conserved heart enhancers that are still able to function as active enhancers. They have also suggested that the evolutionary constraint on enhancers varies by tissue type and that specific approaches need to be developed for pathway or cell specific enhancers. 
+
+% The use of conservation isn't all that bad. Combined with the p300, a protein commonly associated with enhancers, ChIP-seq assays, are able to predict active enhancer elements in different tissues. However, in the context of cardiac tissue, . It is suggested that the evolutionary constraint on enhancers varies by tissue type~\cite{blow2010chip}. 
+
+       
+        % Sequencing has been used, in conjunction with knowledge about specific binding proteins to identify regions of interest. 
+        % This would suggest that specific approaches need to be developed for pathway or cell specific enhancers. 
+
+
+%   We have some data in the form of chromatin immunoprecipitaion followed by sequencing (ChIP-Seq) about the monomethylation of histone H3 at lysine 4 (H3K4me1). This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. 
+   

@@ -1,15 +1,14 @@
 While markov chains are not explicitly mentioned in most of the computational methods described above, a basic treatment of this mathematical object will be beneficial for the reader as some of the underlying techniques below rely on some of the properties of markov chains.
 
-A markov chain is a sequence of stochastic processes... copy from other document
-
-A Markov chain is a sequence $X_{t_1}, X_{t_2}, ...$ of random elements in some set such that the distribution of transition probabilities at the next state of the chain, conditional on all previous states, depends only on the current state of the chain; that is 
+A Markov chain is a sequence $X_{t_1}, X_{t_2}, ...$ of random elements $X_i$ from some state space $\mathscr{X}$ such that the distribution of transition probabilities at the next state of the chain, conditional on all previous states, depends only on the current state of the chain; that is 
     \begin{equation}
-        P(X_{t_{n+1}}|X_{t_n},X_{t_{n-1}},\ldots X_{t_1}) = P(X_{t_{n+1}}|X_{t_n}).
+        P(X_{t_{n+1}}|X_{t_n},X_{t_{n-1}},\ldots X_{t_1}) = P(X_{t_{n+1}}|X_{t_n});
     \end{equation}
+this is known as the Markov property.
 % {\color{red}
 % {I'm not sure if the states should be upper case or lower case}}. 
-For illustrative purposes, here only discrete time Markov chains on discrete state spaces will be considered. 
-The purpose of Markov chain Monte Carlo (MCMC) is generating a Markov chain so that the limiting distribution of $X_t$ as $t\rightarrow\infty$ is some $\pi$. 
+For illustrative purposes, here only discrete time Markov chains on discrete state spaces will be considered. The motivating reason for the inclusion of Markov chains is because of Markov chain Monte Carlo (MCMC) being discussed below.
+The main idea behind MCMC is generating a Markov chain so that the limiting distribution of $X_t$ as $t\rightarrow\infty$ is some $\pi$. 
 In practice, this $\pi$ is the posterior distribution obtained for some quantities of interest in a Bayesian framework. 
 Ensuring that the distribution of $X$ converges to $\pi$, the chain must be constructed with certain properties. However, to describe these mathematically it is necessary to define the probability that the chain moves from state $i$ to state $j$ in $t$ steps as $ P_{ij}(t) = P(X_t = j | X_0 = i)$
 and the first return time to state $i$ to be $\tau_{ii} = \min\{t>0:X_t = i|X_0 = i\}$

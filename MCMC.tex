@@ -1,4 +1,4 @@
-  Paste Markov Chain Stuff here. 
+
 	
 
   The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
@@ -68,4 +68,57 @@ Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldot
   Increment $t$\;
  }
   \caption{Gibbs Sampling Algorithm}
+\end{algorithm}
+
+Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but there exists a method known as the Generalised Gibbs Sampler, presented by Keith \emph{et al}. \cite{keith2004generalized}. %{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
+Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generates a Markov Chain in the set $\mathscr U \subseteq \mathscr I \times \mathscr X$. Where $\mathscr I$ denotes the index set; a set that keeps indices of the type of transitions available at each step of the chain. The set $\mathscr U$ must be chosen such that the projections of $\mathscr U$ on the sets $\mathscr I$ and $\mathscr X$ are onto. The algorithm functions in two steps: the \textbf{Q Step} and the \textbf{R Step}, detailed below. 
+
+\subsection{Q Step} The Q step is about deciding what type of transition to make next. 
+To describe the Q step, it is necessary to define some objects. Let $\*u = (i,x) \in {\mathscr U}$, wehere $i\in \mathscr I$ and $x\in\mathscr X$.
+The set $\mathscr Q(x) = \{(i,z) \in \mathscr U : z = x\}$ is defined as the set of types of possible transitions available at $x$.
+Also, for every $x \in \mathscr X$ a transition matrix $\mathcal Q_x$ is defined on $\mathscr Q(x)$. Let $q_x$ be a distribution stationary with resepct to $\mathcal Q_x$, required for a subsequent step. 
+% {\color{red}I think this means that we have to construct $\mathcal Q_x$ to be aperiodic to ensure the existence of $q_x$. Is the stochastic process represented by $Q$ also a Markovian? Probably.}
+Also defined is
+	\begin{equation}
+		Q(\*u,\*v) = 
+			\begin{cases}
+			\mathcal Q_x(\*u,\*v), & \text{for } \*v \in \mathscr Q(x)\\
+			0 & \text{otherwise} 
+			\end{cases}
+		\end{equation}
+on $\mathscr U$ to be a global transition matrix from $\*u = (i,x)$ to $\*v = (j,y)$.
+
+Given that the system is in state $\*u = (i,x)$, carrying out the Q step is done by generating $\*v \in \mathscr Q(x)$, with a draw from the distribution of with density $Q(x,\cdot)$.
+
+\subsection{The R Step}
+Once the Q step has been performed, the R step is then about generating the next point in the chain. Again, it is necessary for some definitions.
+For each $\*u \in \mathscr U$, define the set $\mathscr R(\*u)$ as the set of possible transitions from $\*u$. The sets $\mathscr R(\*u)$ must form a partition of ${\mathscr U}$. 
+% {\color{red} Not entirely sure why this is a requirement. What happens if they don't form a partition? My initial guess is that there will be some states that aren't accessible OR YOU COULD JUST NOT HAVE THEM BE IN $\mathscr U$}
+Define $$\mathcal R_\*u(\*v) = \frac{s(\*u,\*v)f(y)q_y(\*v)}{\sum_{\*w\in\mathscr R(\*u)}f(z)q_z(\*w)}$$ to be the probability to transition from state $\*u$ to state $\*v\in\mathscr R(\*u)$. Here, $s$ is some symmetric, non-negative function and $f$ is the distribution of interest {\color{red}{should I change this to $\pi$ or change the others to $f$?}}. 
+A global transition matrix on ${\mathscr U}$ is defined to be
+\begin{equation}
+		R(\*u,\*v) = 
+			\begin{cases}
+			\dfrac{s(\*u,\*v)f(y)q_y(\*v)}{\sum_{\*w\in\mathscr R(\*u)}f(z)q_z(\*w)}, & \text{if } \*v \in \mathscr R(\*u)\setminus\{\*u\}\\
+			1 - \sum_{\*w \in \mathscr R(\*u)\setminus\*\{u\}} R(\*u,\*w) & 
+		    \text{if $\*v = \*u$}\\
+			0 & \text{otherwise}\end{cases}
+		\end{equation}
+	where $\*w = (k,z)$ and $\sum_{\*w \in \mathscr R(\*u)\setminus\*\{u\}} R(\*u,\*w) \leq 1$.
+After having selected $\*v \in \mathscr Q(\*u)$ by performing the Q step, generate $\*w \in \mathscr R(\*v)$ by drawing from $R(\*u,\cdot)$ and update the state of the chain to $\*w$.
+\subsection{Algorithm (GGS)}
+Repeating the Q step and R step of the algorithm generates a Markov chain $\{\*u_0,\*u_1,\ldots\}$ on $\mathscr U$ such that the projection on to $\mathscr X$ is the target distribution $\pi$.
+
+\begin{algorithm}[H]
+ %\KwData{this text}
+ %\KwResult{how to write algorithm with \LaTeX2e }
+ Set $\*u_0$, $t=0$\; 
+ \Repeat{converged
+ }{
+    Generate $\*v\in\mathscr Q(x) \sim \mathcal Q(\*u,\cdot)$\;
+    Generate $\*w\in\mathscr R(\*v)\sim R(\*v,\cdot)$\;
+    Set $\*u_{t+1} = \*w$\;
+    Increment $t$\;
+ }
+  \caption{Algorithm for the generalized Gibbs Sampler}
 \end{algorithm}

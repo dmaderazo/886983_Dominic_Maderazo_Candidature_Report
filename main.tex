@@ -15,6 +15,13 @@
 \newcommand*\del{\mathop{}\!\partial}
 \def\*#1{\mathbf{#1}}
 \setlength{\parskip}{1em}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+% \linespread{2}
 % \setlength{\parindent}{4em}        
 \begin{document}
     % \section*{Abstract}
@@ -36,13 +43,16 @@
         \subsection{Biological Background}
         \input{Enhancers}
         \subsection{Computational Identification of Enhancers}
+        \label{sSec:computational}
         \input{compIdent} 
+        \subsection{Cardiac Enhancers}
+        \input{HeartStuff}
         \subsection{Mathematical Techniques}
-
+        \label{sSec:mathematical}
         This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above.
 
-            \subsubsection{k-Means}
-            \input{kMeans}
+            % \subsubsection{k-Means Clustering}
+            % \input{kMeans}
             
 
             \subsubsection{Markov Chains}
@@ -57,6 +67,8 @@
             \subsubsection{Markov Chain Monte Carlo}
             \input{MCMC}
             
+            \subsubsection{Sequence Alignment}
+            \input{alignment}
             
     % \section{Conceptual Framework}
         
