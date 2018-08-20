@@ -1,0 +1,11 @@
+Alignment Free stuff:
+
+Alignment free sequence comparison overcomes some of the shortcomings of alignmenet based sequence comparison. The primary concern is when there is a comparison of sequences of regulatory elements taht are note conserved in a traditional alignment sense. This occurs when the sequences being compared are not orthologous (derived from a common ancestor). 
+
+An approach to alignment free sequence comparison is by fixing a word length $k$, and computing the distributions for the frequencies of all $k$-length words (also '$k$-mer') in each of the sequences. 
+
+\section{Math}
+
+let $\mathbf{A} = A_1A_2\ldots A_{n_1}$ and $\mathbf{B}=B_1B_2\ldots B_{n_2}$ be two sequences of length $n_1$ and $n_2$ respectively. Each character $A_i,\,B_i$ take values in some finite alphabet $D$, with $|D| = d$.  The sequences $\mathbf{A}$ and $\mathbf{B}$ are assumed to be made by some $\omega th$ order markov process; $\omega$ may be different for each sequence. 
+
+For convenience, define $\bar{n_1} = n_1 - k + 1$ and $\bar{n_2} = n_2 - k + 1$
