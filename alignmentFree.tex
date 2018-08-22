@@ -4,8 +4,29 @@ Alignment free sequence comparison overcomes some of the shortcomings of alignme
 
 An approach to alignment free sequence comparison is by fixing a word length $k$, and computing the distributions for the frequencies of all $k$-length words (also '$k$-mer') in each of the sequences. 
 
+%Crazy idea. Combining the alignment free sequence comparison with a weighting in the summation of whether or not something is located in a methylated region. Some constants (that sum to 1?) that weight the cases of:
+	% Neither in Methylated
+	% One in Methylated
+	% Both in Methylated
+
 \section{Math}
 
-let $\mathbf{A} = A_1A_2\ldots A_{n_1}$ and $\mathbf{B}=B_1B_2\ldots B_{n_2}$ be two sequences of length $n_1$ and $n_2$ respectively. Each character $A_i,\,B_i$ take values in some finite alphabet $D$, with $|D| = d$.  The sequences $\mathbf{A}$ and $\mathbf{B}$ are assumed to be made by some $\omega th$ order markov process; $\omega$ may be different for each sequence. 
+As the name suggests, alignment free sequence comparison seeks to compare two sequences without the use of an alignment algorithm. One of the standard ways to do this is with similarity measures. The $D_2$ score by LIPPERT ET ALL CITE THIS UP IN HEREEEE is defined as the number of $k$-mer matches between two sequences, including overlaps. 
 
-For convenience, define $\bar{n_1} = n_1 - k + 1$ and $\bar{n_2} = n_2 - k + 1$
+
+Let $\mathbf{A} = A_1A_2\ldots A_{n_1}$ and $\mathbf{B}=B_1B_2\ldots B_{n_2}$ be two sequences of length $n_1$ and $n_2$ respectively. Each character $A_i,\,B_i$ take values in some finite alphabet $D$, with $|D| = d$.  The sequences $\mathbf{A}$ and $\mathbf{B}$ are assumed to be made by some $\omega th$ order markov process; $\omega$ may be different for each sequence. The following assumes $\omega = 0$ for simplicity, but the formulae can be modified for higher orders. 
+
+For convenience, define $\bar{n_1} = n_1 - k + 1$ and $\bar{n_2} = n_2 - k + 1$. An index set is defined for the matching positions $I = \{(i,j): 1 \leq i \leq \bar{n_1}, 1 \leq j \leq \bar{n_2}\}$. This set represents all the possible positions in $\mathbf{A}$ (resp $\mathbf{B}$) indexed by $i$ (resp $j$) where a $k$-mer can be found. 
+ % This set represents the positions in $\mathbf{A}$ where a $k$-mer is found starting in position $i$ and the corresponding position $j$ in $\mathbf{B}$ where the same $k$-mer may be found. 
+Defining $Y_{(i,j)}$ to be the indicator variable for the $k$-mer starting at $A_i$ matching with the $k$-mer starting at $B_i$, the $D_2$ score of $\mathbf{A}$ and $\mathbf{B}$ can be stated as 
+	\begin{equation}
+		D_2(A,B) = \sum_{(i,j)\in I })Y_{(i,j)}
+	\end{equation}.  
+
+
+The following is also convenient for analytical purposes. For a given $v = (i,j) \in I$ and define
+	\begin{equation}
+		J_v=\{u = (i',j') \in I : |i-i'|\leq k or |j-j'|\leq k\}.
+	\end{equation} 
+
+The main 
