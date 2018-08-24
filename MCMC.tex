@@ -1,15 +1,33 @@
 
 	
 
-  The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
-	%obtained in doing Bayesian analysis. 
-	{This is achieved by constructing a Markov Chain that is aperiodic and irreducible, (therefore ergodic) to ensure that the limiting distribution of the Markov chain is the the one that is desired to be sampled from. This method guarantees that $X_t\rightarrow\pi$ in in distribution $t\rightarrow\infty$}
+%   The primary purpose of Markov chain Monte Carlo (MCMC) in the context of Bayesian inference is to sample from posterior distributions for which more efficient means of sampling are not available.
+% 	%obtained in doing Bayesian analysis. 
+% 	{This is achieved by constructing a Markov Chain that is aperiodic and irreducible, (therefore ergodic) to ensure that the limiting distribution of the Markov chain is the the one that is desired to be sampled from. This method guarantees that $X_t\rightarrow\pi$ in in distribution $t\rightarrow\infty$}
+% The motivating reason for the inclusion of Markov chains is because of Markov chain Monte Carlo (MCMC) being discussed below.
+The main idea behind MCMC is generating a Markov chain so that the limiting distribution of $X_t$ as $t\rightarrow\infty$ is some $\pi$. 
+In practice, this $\pi$ is the posterior distribution obtained for some quantities of interest in a Bayesian framework. 
+Ensuring that the distribution of $X$ converges to $\pi$, the chain must be constructed with certain properties. However, to describe these mathematically it is necessary to define the probability that the chain moves from state $i$ to state $j$ in $t$ steps as $ P_{ij}(t) = P(X_t = j | X_0 = i)$
+and the first return time to state $i$ to be $\tau_{i} = \min\{t>0:X_t = i|X_0 = i\}$
+    \begin{enumerate}[(i)]
+        \item a \textbf{positive recurrent} Markov chain is one with the propery
+            \begin{enumerate}
+                \item $E[\tau_{i}] < \infty ,\, \forall i$
+            \end{enumerate}
+        
+        \item A Markov chain is called \textbf{irreducible} if $\forall~i,j, \exists~t > 0$ such that $P_{ij}(t) > 0$.
+        % \item An irreducible chain is \textbf{recurrent} if $P(\tau_{ii} < \infty) = 1$ for some $i$.
+        % \item An irreducible recurrent chain is called \textbf{positive recurrent} if $E[\tau_{ii}]<\infty$ for some $i$.
+        \item An irreducible chain is \textbf{aperiodic} if for some $i$
+            $$gcd\{n>0:P(X_n = i|X_0 = i) > 0\} =1. $$
+    \end{enumerate}
+The irreducibility condition intuitively means that all states are reachable from any starting state in a finite number of steps, while requiring aperiodicity means that the chain will not oscillate between a subset of states in a periodic manner and positive recurrence guarantees a stationary distribution. A Markov chain constructed with all three of these properties is what is desired for the purposes for MCMC.
 % 	{\color{red}Apparently we only ever make Markov Chains that are reversible. I think this might be so that the detailed balance equations hold, which is sufficient condition for ergodicity(?)}
 % 	\textbf{Practical considerations:} Mixing, convergence, proposal distributions, how long to run the chain. 
 % 	\subsection{Metropolis-Hastings Algorithm}
 	\paragraph{Metropolis-Hastings Algorithm}~\\
 \noindent
-	The Metropolis-Hastings (MH) Algorithm is the standard introduction to MCMC methods for sampling. Presented in 1970 by Hastings \cite{hastings1970monte}, it is an extension of the algorithm originally put forth by Metropolis in 1953 \cite{metropolis1953equation}.
+	Presented in 1970 by Hastings \cite{hastings1970monte}, it is an extension of the algorithm originally put forth by Metropolis in 1953 \cite{metropolis1953equation}.
 	The steps for the algorithm, also presented in Algorithm~\ref{alg:MetHast}, are as follows. Let $\pi(x)$ be the target density (up to a constant), defined on some set ${\mathscr X}$.
 	To initialize the algorithm let $x_0$ to be the first sample, chosen arbitrarily. In each iteration $g(y|x)$ 
 % 	({\color{red}Is it more conventional to write $g(Y|X)$ or does it not matter as long as it is consistent?}), 
@@ -17,7 +35,7 @@
 	    \begin{equation}
 	        \alpha(x,y) = min\left(1,\frac{\pi(y)g(x|y)}{\pi(x)g(y|x)}\right).
 	    \end{equation}
-	If the candidate point is accepted, $x_{t+1} = y$, otherwise, $x_{t+1} = x_t$ and the next iteration is begun. In the original Metropolis algorithm, $g$ is chosen to be symmetric; that is $g(y|x) = g(x|y)$. However, in general $g$ can be arbitrary. The choice of $g$ is non-trivial as there are ways to choose it such that the chain mixes adequately. %There are smart ways to tune $g$ to ensure that the chain mixes adequately.
+	If the candidate point is accepted, $x_{t+1} = y$, otherwise, $x_{t+1} = x_t$ and the next iteration is begun. In the original Metropolis algorithm, $g$ is chosen to be symmetric; that is $g(y|x) = g(x|y)$. However, in general $g$ can be arbitrary. The choice of $g$ is non-trivial as there are ways to choose it such that the chain mixes adequately. The algorithm can also be modified to update single components iteratively. %There are smart ways to tune $g$ to ensure that the chain mixes adequately.
 	
 	\begin{algorithm}[H]
 	\label{alg:MetHast}
@@ -52,11 +70,11 @@
 
 	\paragraph{Gibbs Sampler Algorithm}~\\
 \noindent
-In general, the quantity $x$ is a vector and standard MH updates all the components at once. In contrast to this, there exist a class of MCMC methods known as Gibbs samplers, that iteratively update the components of $x$. The Gibbs Sampler originally presented by  Geman and Geman \cite{geman1984stochastic} is an example of one of these and can be shown to be a special case of single component MH \cite{gilks1995markov}. 
+In general, the quantity $x$ is a vector and standard MH updates all the components at once. In contrast to this, there exist a class of MCMC methods known as Gibbs samplers, that iteratively update the components of $x$. The Gibbs sampler as presented by Geman and Geman~\cite{geman1984stochastic} is an example of one of these and can be shown to be a special case of single component MH~\cite{gilks1995markov}. 
 % Rather than updating the entirety of $x$ as in the MH Algorithm, there exist a class of MCMC algorithms that update components of $x$ in an iterative fashion, the most popular of these being the Gibbs Sampler, originally formulated by Geman and Geman \cite{geman1984stochastic}. 
-Denote $x_. = (x_{.,1},\ldots x_{.,h})$. Note that each of the components of $x$ may possibly be of differing dimension. 
+Denote $x_t = (x_{t,1},\ldots x_{t,h})$. Note that each of the components of $x$ may possibly be of differing dimension. 
 % ({\color{red} I suspect that this has something to do with efficiency. I.e. you might want to group components together that have 'nice' conditional distributions?}).
-Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldots x_{.,h})$, that is $x_{.,-i}$ comprises of all the components of $x_.$ except $x_{.,i}$. Gibbs sampling updates $x_{.,i}$ by drawing a candidate $y_i$ from $\pi(y_{.,i}|x_{.,-i})$, also known as the full conditional distribution. An advantage of the Gibbs Sampler over MH is that all candidate points are accepted with probability 1.
+Introducing the notation $x_{t,-i} = (x_{t,-i},\ldots x_{t,i-1}, x_{t,i+1} \ldots x_{t,h})$, that is $x_{t,-i}$ comprises of all the components of $x_t$ except $x_{t,i}$. Gibbs sampling updates $x_{t,i}$ by drawing a candidate $y_i$ from $\pi(y_{t,i}|x_{t,-i})$, also known as the full conditional distribution. An advantage of the Gibbs Sampler over MH is that all candidate points are accepted with probability 1.
 
 \begin{algorithm}[H]
  %\KwData{this text}
@@ -75,7 +93,7 @@ Introducing the notation $x_{.,-i} = (x_{.,-i},\ldots x_{.,i-1}, x_{.,i+1} \ldot
 
 	\paragraph{Generalized Gibbs Sampler Algorithm}~\\
 \noindent
-Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but there exists a method known as the Generalised Gibbs Sampler (GGS), presented by Keith \emph{et al}. \cite{keith2004generalized}. %{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
+Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but MCMC methods such as reversible jump MCMC by Green~\cite{green1995reversible} and the Generalised Gibbs Sampler (GGS), presented by Keith \emph{et al.}~\cite{keith2004generalized} were developed for this situation. The GGS will be discussed in detail here as this sampler has been used in the past for the identification of putative non-coding functional elements and the investigation of genomic structure~\cite{algama2014drosophila}.%{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
 Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generates a Markov Chain in the set $\mathscr U \subseteq \mathscr I \times \mathscr X$. Where $\mathscr I$ denotes the index set; a set that keeps indices of the type of transitions available at each step of the chain. The set $\mathscr U$ must be chosen such that the projections of $\mathscr U$ on the sets $\mathscr I$ and $\mathscr X$ are onto. The algorithm functions in two steps: the \textbf{Q Step} and the \textbf{R Step}, detailed below. 
 
 % \subsection{Q Step} 
@@ -84,7 +102,7 @@ Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generate
 The Q step is about deciding what type of transition to make next. 
 To describe the Q step, it is necessary to define some objects. Let $\*u = (i,x) \in {\mathscr U}$, wehere $i\in \mathscr I$ and $x\in\mathscr X$.
 The set $\mathscr Q(x) = \{(i,z) \in \mathscr U : z = x\}$ is defined as the set of types of possible transitions available at $x$.
-Also, for every $x \in \mathscr X$ a transition matrix $\mathcal Q_x$ is defined on $\mathscr Q(x)$. Let $q_x$ be a distribution stationary with resepct to $\mathcal Q_x$, required for a subsequent step. 
+Also, for every $x \in \mathscr X$ a transition matrix $\mathcal Q_x$ is defined on $\mathscr Q(x)$. Let $q_x$ be a distribution stationary with respect to $\mathcal Q_x$, required for a subsequent step. 
 % {\color{red}I think this means that we have to construct $\mathcal Q_x$ to be aperiodic to ensure the existence of $q_x$. Is the stochastic process represented by $Q$ also a Markovian? Probably.}
 Also defined is
 	\begin{equation}
@@ -96,15 +114,15 @@ Also defined is
 		\end{equation}
 on $\mathscr U$ to be a global transition matrix from $\*u = (i,x)$ to $\*v = (j,y)$.
 
-Given that the system is in state $\*u = (i,x)$, carrying out the Q step is done by generating $\*v \in \mathscr Q(x)$, with a draw from the distribution of with density $Q(x,\cdot)$.
+Given that the system is in state $\*u = (i,x)$, carrying out the Q step is done by generating $\*v \in \mathscr Q(x)$, with a draw from the distribution with density $Q(x,\cdot)$.
 
 \subparagraph{The R Step}~\\
 \noindent
-Once the Q step has been performed, the R step is then about generating the next point in the chain. Again, it is necessary for some definitions.
+Once the Q step has been performed, the R step generates the next point in the chain. Again, it is necessary for some definitions.
 For each $\*u \in \mathscr U$, define the set $\mathscr R(\*u)$ as the set of possible transitions from $\*u$. The sets $\mathscr R(\*u)$ must form a partition of ${\mathscr U}$. 
 % {\color{red} Not entirely sure why this is a requirement. What happens if they don't form a partition? My initial guess is that there will be some states that aren't accessible OR YOU COULD JUST NOT HAVE THEM BE IN $\mathscr U$}
-Define $$\mathcal R_\*u(\*v) = \frac{s(\*u,\*v)f(y)q_y(\*v)}{\sum_{\*w\in\mathscr R(\*u)}f(z)q_z(\*w)}$$ to be the probability to transition from state $\*u$ to state $\*v\in\mathscr R(\*u)$. Here, $s$ is some symmetric, non-negative function and $f$ is the distribution of interest %{\color{red}{should I change this to $\pi$ or change the others to $f$?}}. 
-A global transition matrix on ${\mathscr U}$ is. defined to be
+Define $$\mathcal R_\*u(\*v) = \frac{s(\*u,\*v)f(y)q_y(\*v)}{\sum_{\*w\in\mathscr R(\*u)}f(z)q_z(\*w)}$$ to be the probability to transition from state $\*u$ to state $\*v\in\mathscr R(\*u)$. Here, $s$ is some symmetric, non-negative function and $f$ is the distribution of interest. %{\color{red}{should I change this to $\pi$ or change the others to $f$?}}. 
+A global transition matrix on ${\mathscr U}$ is defined to be
 \begin{equation}
 		R(\*u,\*v) = 
 			\begin{cases}

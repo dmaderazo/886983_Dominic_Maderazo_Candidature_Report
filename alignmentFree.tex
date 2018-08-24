@@ -8,20 +8,21 @@
 	% Both in Methylated
 
 % \section{Math}
-
+In an alternative framework, sequences can be compared without the need for an alignment. 
 One of the pioneering methods of alignment free sequence comparison was through the $D_2$ statistic. Originally presented by Lippert~\cite{lippert2002distributional}, the $D2$ statistic is defined as the number of $k$-mer matches between two sequences, including overlaps.
 
 
 Let $\mathbf{A} = A_1A_2\ldots A_{n_1}$ and $\mathbf{B}=B_1B_2\ldots B_{n_2}$ be two sequences of length $n_1$ and $n_2$ respectively. Each character $A_i,\,B_i$ take values in some finite alphabet $D$, with $|D| = d$.  The sequences $\mathbf{A}$ and $\mathbf{B}$ are assumed to be made by some $\omega th$ order markov process; $\omega$ may be different for each sequence. The following assumes $\omega = 0$ for simplicity, but the formulae can be modified for higher orders. 
 
 For convenience, define $\bar{n_1} = n_1 - k + 1$ and $\bar{n_2} = n_2 - k + 1$. An index set is defined for the matching positions $I = \{(i,j): 1 \leq i \leq \bar{n_1}, 1 \leq j \leq \bar{n_2}\}$. This set represents all the possible positions in $\mathbf{A}$ (resp $\mathbf{B}$) indexed by $i$ (resp $j$) where a $k$-mer can be found. 
- % This set represents the positions in $\mathbf{A}$ where a $k$-mer is found starting in position $i$ and the corresponding position $j$ in $\mathbf{B}$ where the same $k$-mer may be found. 
+ % This set represents the positions in $\mathbf{A}$ where a
+ $k$-mer is found starting in position $i$ and the corresponding position $j$ in $\mathbf{B}$ where the same $k$-mer may be found. 
 Defining $Y_{(i,j)}$ to be the indicator variable for the $k$-mer starting at $A_i$ matching with the $k$-mer starting at $B_i$, the $D_2$ score of $\mathbf{A}$ and $\mathbf{B}$ can be stated as 
 	\begin{equation}
 		D_2(A,B) = \sum_{(i,j)\in I }Y_{(i,j)}.\label{eqn:AF}
 	\end{equation}
 
-A distribution for the $k$-mers can be obtained an compared to reveal structural features of the sequences. 
+A distribution for the $k$-mers can be obtained an compared to reveal structural features of the sequence. It should be noted that other alignment free sequence comparison methods exist for the purposes of putative functional element identification~\cite{arunachalam2010alignment, kantorovitz2007statistical, reinert2009alignment, wang2013cpat}. 
 % The following is also convenient for analytical purposes. For a given $v = (i,j) \in I$ and define
 % 	\begin{equation}
 % 		J_v=\{u = (i',j') \in I : |i-i'|\leq k \text{ or } |j-j'|\leq k\}.

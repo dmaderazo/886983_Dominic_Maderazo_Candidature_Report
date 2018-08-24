@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \author{D Maderazo}
-\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz}
+\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz, pgfgantt}
 \usepackage[left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
 \usepackage{amsfonts, float}
 \usepackage[]{algorithm2e}
@@ -41,6 +41,33 @@
 % \linespread{2}
 % \setlength{\parindent}{4em}        
 \begin{document}
+% \title{Application of Bayesian Techniques for Genome Segmentation Analysis}
+% \date{\today}
+% \author{Dominic Maderazo}
+% \begin{center}
+%     {Supervisors: Jennifer Flegg \& Jonathan Keith}
+% \end{center}%Supervisors: Jennifer Flegg \& Jonathan Keith}
+% \renewcommand{\maketitlehookb}{\centering You won't expect the results}
+% \maketitle
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+	{\scshape\LARGE Columbidae University \par}
+	\vspace{1cm}
+	{\scshape\Large Final year project\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Pigeons love doves\par}
+	\vspace{2cm}
+	{\Large\itshape John Birdwatch\par}
+	\vfill
+	supervised by\par
+	Dr.~Mark \textsc{Brown}
+
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
     % \section*{Abstract}
     % Yes
     % sub Sections for lit review: (levels *, and > )
@@ -66,7 +93,8 @@
         \input{HeartStuff}
         \subsection{Mathematical Techniques}
         \label{sSec:mathematical}
-        This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above. A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification. They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}.
+        This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above in Section~\ref{sSec:mathematical}. A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification, but they will not be discussed here.%They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. 
+        Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}.
 
             % \subsubsection{k-Means Clustering}
             % \input{kMeans}
@@ -89,11 +117,11 @@
             \subsubsection{Sequence Alignment}
             \input{alignment}
             
-            \subsubsection{Change Detection}
+            \subsubsection{Change Point Detection}
             \input{Segmentation}
             
             
-            \subsubsection{Alignment Free}
+            \subsubsection{Alignment Free Sequence Comparison}
             \input{alignmentFree}
             
             
@@ -120,6 +148,64 @@
     % \end{figure}
     
     \input{futureStuff}
+    
+    \section{Timeline}
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+
+
+\begin{ganttchart}[
+   canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+   hgrid style/.style={draw=black!5, line width=.75pt},
+   vgrid,%={*1{draw=black!15, line width=.75pt}},
+   today=0,
+   today rule/.style={
+     draw=black!64,
+     dash pattern=on 3.5pt off 4.5pt,
+     line width=1.5pt
+   },
+   today label font=,%\small\bfseries,
+   title/.style={draw=none, fill=none},
+   title label font=\bfseries,
+   title label node/.append style={below=7pt},
+   include title in canvas=false,
+   % bar label font=\mdseries\small\color{black!70},
+%     bar label node/.append style={align=left,text width=14em,below left=-5pt and 0pt},
+   bar/.append style={fill=groupblue,draw=none},
+   bar incomplete/.append style={fill=barblue},
+   % bar progress label font=\mdseries\footnotesize\color{black!70},
+   group incomplete/.append style={fill=groupblue},
+   group left shift=0,
+   group right shift=0,
+   group height=.5,
+   group peaks tip position=0,
+   group label node/.append style={align=left,text width=15em},
+        Mile2/.style={milestone/.append style={fill=yellow,shape=circle}}
+   % group progress label font=\bfseries\small,
+ ]{1}{12}
+    \sffamily
+ \gantttitle[
+   title label node/.append style={below left=7pt and -3pt}
+ ]{Months from now:\quad}{0}
+ \gantttitlelist{0,2,...,24}{1} \\
+    \ganttbar{Development of \texttt{R} library}{1}{3}
+    \ganttmilestone[Mile2]{}{5}\\ 
+%  \ganttbar{Model of nuclear calcium}{1}{2} \\
+%     \ganttmilestone[Mile2]{}{9}
+ \ganttbar{Alignment Based Enhancer Identification}{2}{5} 
+ \ganttmilestone[Mile2]{}{6}
+    \\
+    % \ganttmilestone[Mile2]{}{10}
+    % \ganttbar{Simplified model of channel interaction}{5}{7} \\
+    % \ganttmilestone[Mile2]{}{12}
+    \ganttbar{Alignment Free Enhancer Identification}{6}{9}
+    \ganttmilestone[Mile2]{}{10} \\
+    \ganttbar{Thesis write up}{10}{12}
+    % \ganttlink{elem2}{elem3}
+
+\end{ganttchart}\\
+\caption{The period of work is indicated with blue bars while yellow circles indicate write up of the work for publication.}\\
     \bibliographystyle{acm}
 \bibliography{LitReview}
 \end{document}
