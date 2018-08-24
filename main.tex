@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \author{D Maderazo}
-\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz, pgfgantt}
+\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz, pgfgantt, epstopdf}
 \usepackage[left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
 \usepackage{amsfonts, float}
 \usepackage[]{algorithm2e}
@@ -51,17 +51,17 @@
 % \maketitle
 \begin{titlepage}
 	\centering
-	\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
-	{\scshape\LARGE Columbidae University \par}
+	\includegraphics[width=0.15\textwidth]{PRIMARY_A_Vertical_Housed_CMYK.eps}\par\vspace{1cm}
+	{\scshape\LARGE The University of Melbourne \par}
 	\vspace{1cm}
-	{\scshape\Large Final year project\par}
+	{\scshape\Large Confirmation Report\par}
 	\vspace{1.5cm}
-	{\huge\bfseries Pigeons love doves\par}
+	{\huge\bfseries Computational Methods for Regulatory Enhancer Identification\par}
 	\vspace{2cm}
-	{\Large\itshape John Birdwatch\par}
+	{\Large\itshape Dominic Maderazo\par}
 	\vfill
 	supervised by\par
-	Dr.~Mark \textsc{Brown}
+	Dr.~Jennifer \textsc{Flegg}, Dr.~James \textsc{Osrborne} \& Assoc.~Prof.~Jonathan \textsc{Keith}
 
 	\vfill
 
@@ -93,8 +93,8 @@
         \input{HeartStuff}
         \subsection{Mathematical Techniques}
         \label{sSec:mathematical}
-        This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above in Section~\ref{sSec:mathematical}. A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification, but they will not be discussed here.%They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. 
-        Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}.
+        A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. After an introduction Markov chains and paramater estimation necessary for a more detailed discussion of the mathematics underlying the computational methods discussed in Section~\ref{sSec:mathematical}. In this section there will be a discussion of HMMs, alignment based and alignment free sequence comparison. These methods are chosen because of how they are able to ChromHMM is a great example of incorporating epigenetic sequence information, while alignment based and alignment free methods re able to use ideologies of comparative genomics effectively. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification, but they will not be discussed here.%They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. 
+        Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}. 
 
             % \subsubsection{k-Means Clustering}
             % \input{kMeans}
