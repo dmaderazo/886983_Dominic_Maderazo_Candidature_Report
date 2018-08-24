@@ -5,6 +5,9 @@
 \usepackage{amsfonts, float}
 \usepackage[]{algorithm2e}
 \usepackage{csquotes}
+
+\usepackage{xcolor,colortbl}
+
 \linespread{1}
 \newtheorem*{mydef}{Definition}
 \newtheorem{mythm}{Theorem}
@@ -21,6 +24,20 @@
 \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
 \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
+
+\usepackage{forloop}
+\newcounter{loopcntr}
+\newcommand{\rpt}[2][1]{%
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{#2}%
+}
+\newcommand{\on}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&\cellcolor{gray}}
+}
+\newcommand{\off}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&}
+}
+
+
 % \linespread{2}
 % \setlength{\parindent}{4em}        
 \begin{document}
@@ -49,7 +66,7 @@
         \input{HeartStuff}
         \subsection{Mathematical Techniques}
         \label{sSec:mathematical}
-        This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above.
+        This section is a more in detailed discussion of the mathematics underlying the computational methods discussed above. A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification. They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}.
 
             % \subsubsection{k-Means Clustering}
             % \input{kMeans}
@@ -58,26 +75,51 @@
             \subsubsection{Markov Chains}
             \input{markovChains}
             
-            \subsubsection{Hidden Markov Models}
-            \input{HMMs} 
-            
             \subsubsection{Parameter Estimation}
             \input{paramEst}
             
             \subsubsection{Markov Chain Monte Carlo}
             \input{MCMC}
             
+            % \subsubsection{MEME}
+            % \input{MEMEs} 
+            \subsubsection{Hidden Markov Models}
+            \input{HMMs} 
+            
             \subsubsection{Sequence Alignment}
             \input{alignment}
             
+            \subsubsection{Change Detection}
+            \input{Segmentation}
+            
+            
+            \subsubsection{Alignment Free}
+            \input{alignmentFree}
+            
+            
+            
+            
     % \section{Conceptual Framework}
         
-    \section{Preliminary Data}
+    % \section{Preliminary Data}
     \section{Relevance of study}
-        maybe incorporate this in to the conceptual framework?
+        There is some mystery surrounding cardiac enhancers as they are not conserved in the same way that enhancers in other tissue may be, yet are still able to retain function. Being able to rank the importance of enhancers has been done in other tissue in the past by using conservation as a metric, but a lack of conservation for cardiac enhancers poses a problem.
+        The aim of the project is to extend existing methods for the computational identification of conserved developmental cardiac enhancers or the development of new ones that are able to rank the importance of enhancers. The the extent that the literature was reviewed, there appears to be a gap in computational methods that function this way in cardiac specific tissue.
+        
+        We have access to ChIP-Seq H3K4me1 data collected by collaborators for different species in heart tissue in conjunction with those that are available in public databases, at a variety of developmental stages. This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. We would like to develop methods that are able to use this data for the computational identification of heart enhancers or extend existing methods to include this data. Whatever method gets developed, it is aimed to be published in the public domain to be used as a tool for bioinformatics and applicable in different tissues specific contexts.  
         
     \section{Progress to date}
     \input{progress}
+    
+    \section{Work to be done}
+    % \begin{figure}[H]
+    %     \centering
+    %     \input{gantt}
+    %     \caption{Caption}
+    %     \label{fig:my_label}
+    % \end{figure}
+    
+    \input{futureStuff}
     \bibliographystyle{acm}
 \bibliography{LitReview}
 \end{document}
