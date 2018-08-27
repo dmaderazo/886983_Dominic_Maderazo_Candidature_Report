@@ -5,6 +5,7 @@
 \usepackage{amsfonts, float}
 \usepackage[]{algorithm2e}
 \usepackage{csquotes}
+\usepackage[utf8]{inputenc}
 
 \usepackage{xcolor,colortbl}
 
@@ -59,9 +60,10 @@
 	{\huge\bfseries Computational Methods for Regulatory Enhancer Identification\par}
 	\vspace{2cm}
 	{\Large\itshape Dominic Maderazo\par}
+	
 	\vfill
 	supervised by\par
-	Dr.~Jennifer \textsc{Flegg}, Dr.~James \textsc{Osrborne} \& Assoc.~Prof.~Jonathan \textsc{Keith}
+	Dr.~Jennifer \textsc{Flegg}, Dr.~James \textsc{Osborne} \& Assoc.~Prof.~Jonathan \textsc{Keith}
 
 	\vfill
 
@@ -82,7 +84,16 @@
     %         > Heirarchical modelling?
     %         > MEME
     
-
+    \tableofcontents
+    Things to do:
+    \begin{enumerate}
+        \item Find first mention of TFBSs
+        \item Add table of figures
+        \item First definition for Acronyms
+        \item HMM picture
+        \item Think about positioning of Sequence alignment
+        \item Dependencies for Basic segmentation model
+    \end{enumerate}
     \section{Literature Review}
         \subsection{Biological Background}
         \input{Enhancers}
@@ -131,10 +142,10 @@
         
     % \section{Preliminary Data}
     \section{Relevance of study}
-        There is some mystery surrounding cardiac enhancers as they are not conserved in the same way that enhancers in other tissue may be, yet are still able to retain function. Being able to rank the importance of enhancers has been done in other tissue in the past by using conservation as a metric, but a lack of conservation for cardiac enhancers poses a problem.
-        The aim of the project is to extend existing methods for the computational identification of conserved developmental cardiac enhancers or the development of new ones that are able to rank the importance of enhancers. The the extent that the literature was reviewed, there appears to be a gap in computational methods that function this way in cardiac specific tissue.
+        There is some mystery surrounding cardiac enhancers as they are not conserved in the same way that enhancers in other tissue may be, yet are still able to retain function~\cite{blow2010chip}. Being able to rank the importance of enhancers has been done in other tissue in the past by using conservation as a metric, but a lack of conservation for cardiac enhancers poses a problem.
+        The aim of the project is to extend existing methods for the computational identification of conserved developmental cardiac enhancers or the development of new ones that are able to rank the importance of enhancers. To the extent that the literature was reviewed, there appears to be a gap in computational methods that function this way in cardiac specific tissue.
         
-        We have access to ChIP-Seq H3K4me1 data collected by collaborators for different species in heart tissue in conjunction with those that are available in public databases, at a variety of developmental stages. This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. This methylation of this particular site often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. We would like to develop methods that are able to use this data for the computational identification of heart enhancers or extend existing methods to include this data. Whatever method gets developed, it is aimed to be published in the public domain to be used as a tool for bioinformatics and applicable in different tissues specific contexts.  
+        We have access to ChIP-Seq H3K4me1 data collected by collaborators for different species in heart tissue in conjunction with those that are available in public databases, at a variety of developmental stages. This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. The methylation of this particular site is often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. We would like to develop methods that are able to use this data for the computational identification of heart enhancers or extend existing methods to include this data. Whatever methods are developed, it is aimed to be published in the public domain to be used as a tool for bioinformatics and applicable in different tissues specific contexts.  
         
     \section{Progress to date}
     \input{progress}
@@ -154,7 +165,8 @@
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
 
-
+\begin{figure}
+    \centering
 \begin{ganttchart}[
    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
    hgrid style/.style={draw=black!5, line width=.75pt},
@@ -205,7 +217,11 @@
     % \ganttlink{elem2}{elem3}
 
 \end{ganttchart}\\
-\caption{The period of work is indicated with blue bars while yellow circles indicate write up of the work for publication.}\\
+
+    \caption{The period of work is indicated with blue bars while yellow circles indicate write up of the work for publication.}
+    \label{fig:gantt}
+    \end{figure}
+% \caption{}\\
     \bibliographystyle{acm}
 \bibliography{LitReview}
 \end{document}

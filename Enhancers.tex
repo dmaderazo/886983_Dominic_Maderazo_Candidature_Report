@@ -6,7 +6,7 @@
             \begin{figure}[H]
                  \centering
             \includegraphics[width=0.5\textwidth]{Chromatin.pdf}
-                \caption{The black lines represent DNA and are wrapped around histones, represented by red cylinders. This configuration makes up a nucleosome, which is the basic unit of chromatin.}
+                \caption{A schematic of DNA coiling around histones. The black lines represent DNA and are wrapped around histones, represented by red cylinders. This configuration makes up a nucleosome, which is the basic unit of chromatin.}
                 \label{fig:chromatin1}
             \end{figure}
             
@@ -26,10 +26,10 @@
                     \draw[arrow] (DNA) -- (mRNA);
                     \draw[arrow] (mRNA) -- (Protein);
                     
-                    \draw [arrow] (DNA) -- node[anchor=west] {transcribes} (mRNA);
-                    \draw [arrow] (mRNA) -- node[anchor=west] {translates} (Protein);
+                    \draw [arrow] (DNA) -- node[anchor=west] {transcription} (mRNA);
+                    \draw [arrow] (mRNA) -- node[anchor=west] {translation} (Protein);
                 \end{tikzpicture}
-            \caption{The central dogma of molecular biology: DNA is transcribed to make mRNAs, which as subsequently translated in to proteins. (This diagram may be subject to change)}
+            \caption{The central dogma of molecular biology: DNA is transcribed to make mRNAs, which as subsequently translated in to proteins.}
             \label{fig:centralDogma}
         \end{figure}
         
@@ -38,14 +38,14 @@
         %, giving rise to different outcomes; 
              % A type of mutation known as a single nucleotide polymorphism, that is, the substitution of a single nucleotide base for another.
         % The first type of alteration is the direct alteration of the DNA sequence. A mutation in the DNA sequence of a gene can result in the expression of a different genotype.   
-        The first type of alteration is the direct modification of the DNA sequence through mutation; this can result in the expression of different genotypes.
+        The first type of alteration is the direct modification of the DNA sequence through mutation; results in different genotypes with different gene expression patterns.
         For example, sickle cell anaemia is the result of the mutation of a single nucleotide and affects the haemoglobin carrying capacity of blood cells, causing the sufferer to develop an array of health complications such as strokes~\cite{clancy2008dna}. 
         % This disease is an extreme case of what can go wrong when mutations occur in DNA. 
-        Mutations in organisms that lead to expression of genotypes that are beneficial for an organism can be positively selected for in an organism in an appropriate context. Whether a mutation that results in a different genotype is beneficial or not for an organism is context dependent, but this is essentially one of the drivers of evolution. Fortunately, there is typically some redundancy when it comes to the genotype of an organism and mutations considered beneficial in context are often selected for.
+        Mutations in organisms that that lead to genotypes that are beneficial for an organism can be positively selected for in an organism in an appropriate context. Whether a mutation that results in a different genotype is beneficial or not for an organism is context dependent, but this is essentially one of the drivers of evolution. Fortunately, there is typically some redundancy when it comes to the genotype of an organism and mutations considered beneficial in context are often selected for.
         
-        The other mechanism for changes in gene expression that will be focused on in this thesis are epigenetic factors. Epigenetics is the study of heritable mechanisms for regulating gene expression that are not linked with direct changes to DNA sequences~\cite{holliday2006epigenetics}. There are many epigenetic factors involved in the process of regulation, such as RNA, acetylation, phosphorylation and more~\cite{geiman2002chromatin, jaenisch2003epigenetic, holoch2015rna, waterland2003transposable}. Each play important roles in the grand scheme of regulating gene expression. 
+        The other mechanism for changes in gene expression that will be focused on in this thesis are epigenetic factors. Epigenetics is the study of heritable mechanisms for regulating gene expression that are not linked with direct changes to DNA sequences~\cite{holliday2006epigenetics}. There are many epigenetic factors involved in the process of gene expression regulation, such as non-coding RNA, acetylation and methylation of histone protiens, phosphorylation of histone modifiers and more~\cite{geiman2002chromatin, jaenisch2003epigenetic, holoch2015rna, waterland2003transposable}. Each play important roles in the grand scheme of regulating gene expression. 
         
-        With the increasing amount of available data that describes gene expression, the modern practice of computational identification for enhancer regions involves the incorporation of various data types. Some example of data types that have been used are conservation \cite{visel2007enhancer}, chromatin profile of histone markers \cite{won2010genome} and chromatin accessibility combined with information about general transcription factor binding sites (TFBS) \cite{boyle2010high}. We are interested in the extension of computational and statistical methods or the development of new ones. Each of these data types provides different information about the state of DNA and the more relevant ones more relevant to this project will be discussed. 
+        With the increasing amount of available data that describes gene expression, the modern practice of computational identification for enhancer regions involves the incorporation of various data types. Some example of data types that have been used are conservation \cite{visel2007enhancer}, chromatin profile of histone markers \cite{won2010genome} and chromatin accessibility combined with information about general TFBSs \cite{boyle2010high}. We are interested in the extension of computational and statistical methods or the development of new ones. Each of these data types provides different information about the state of DNA and the more relevant ones more relevant to this project will be discussed. 
         
         % For the purpose of this report, the way chromatin remodelling, methylation and certain TFs interact discussed in detail since these the interplay between these three factors is what we aim to use in the development of computational models.
         
@@ -56,16 +56,17 @@
         
         % The modification of the way these factors interact can affect the final expression profile. 
         
-        TFBSs are often described as \emph{cis}-regulatory elements (CREs), since they are often found ``in \emph{cis}", that is on the same chromosome that their target gene can be found. These TFBSs are then classified according to their function; either as silencers, promoters, insulators and enhancers~\cite{gaszner2006insulators, gross1988nuclease, li1999locus}. 
-        Enhancers are segments of DNA, usually a few 100 base pairs in length, that act as platforms for the recruitment of TFs for the regulation of transcription~\cite{spitz2012transcription}. 
+        TFBSs are often described as \emph{cis}-regulatory elements (CREs), since they are often found ``in \emph{cis}", that is on the same chromosome that their target gene can be found. These TFBSs are then classified according to their function; either as silencers, promoters, insulators and enhancers~\cite{gaszner2006insulators, gross1988nuclease, li1999locus}. Enhancers are segments of DNA, usually a few 100 base pairs in length,  containing multiple TFBSs, that act as platforms for the recruitment of TFs for the regulation of transcription~\cite{spitz2012transcription}. 
         Regardless of the type of CRE, the main mechanism by which CREs carry out their function is through TFs binding to sequences in the DNA not associated with gene coding, so called non-coding sequences. 
-        TFs act by binding in clusters to DNA, but are also thought to form protein complexes known as enhanceosomes, through TF-TF interactions. Spitz and Furlong~\cite{spitz2012transcription} provide a review of some current models for TF-DNA and TF-TF interactions required for the regulation of gene expression.
+        TFs act by binding in clusters of non-coding DNA 6-8 base pairs in length, but are also thought to form protein complexes known as enhanceosomes, through TF-TF interactions. In summary, a CRE can contain several TFBS which correspond to the binding of different TFs. Spitz and Furlong~\cite{spitz2012transcription} provide a review of some current models for TF-DNA and TF-TF interactions required for the regulation of gene expression.
         
         % Spitz and Furlong~\cite{spitz2012transcription} provide a review of the importance of enhancers and how their interactions with each other to form enhancer complexes and different models of TF-DNA and TF-TF interactions. 
         
         In order for these TFs to bind to DNA, they require access to their target binding sites. As mentioned earlier, DNA is packaged into nucleosomes and subsequently chromatin. Depending on the configuration of the packaging, this may hinder or facilitate the expression of a gene by either limiting or increasing the accessibility to regions of DNA~\cite{li2007role}. Figure~\ref{fig:openclose}(a) shows a schematic of open chromatin that is accessible to TF binding and versus closed chromatin, not accessible tor TF binding in Figure~\ref{fig:openclose}(b). Specific chromatin structures are required to maintain proper gene expression and it has been shown that failure to maintain such proper structure can result in changes in gene expression~\cite{ehrlich2001dna}. Chromatin remodelling is the process of repackaging the chromatin and changing the accessibility to different regions in the DNA. By changing the accessibility of chromatin at different times, cells are able to change their gene expression as is typically seen during tissue development. There are various mechanisms for the remodelling of chromatin, the modification of histone proteins will be discussed.%For example, genes located in closed chromatin can be silenced due to the binding sites required for the intiation of transcription not being able to be reached.
 
-        Histone methylation is the addition of a chemical structural sub-unit known as a methyl group to the tails histone proteins that make up the core of the nucleosomes (red cylinders in Fig~\ref{fig:chromatin1}). This is of interest in this report because the modification of histones is able to influence the chromatin landscape, affecting the DNA interactions with proteins and the stability of gene expression ~\cite{jaenisch2003epigenetic, whetstine2009histone}.
+        Histone methylation is the addition of a chemical structural sub-unit known as a methyl group to the tails histone proteins that make up the core of the nucleosomes (red cylinders in Fig~\ref{fig:chromatin1}). This is of interest in this report because the modification of histones is able to influence the chromatin landscape, affecting the DNA interactions with proteins and the stability of gene expression ~\cite{jaenisch2003epigenetic, whetstine2009histone}. Histone methylation can act as activator or repressor of transcription, it depends which residue of the histone is modified (example lysine 4 or lysine 27):
+        Histone 3, Lysine 4, mono-methylation (H3K4me1) actually opens the chromatin, therefore is permissive for transcription, but H3K27me3 compacts the chromatin, therefore inhibits transcription.
+        However, direct methylation of DNA (not histones), is known to repress gene expression.
         In fact, enhancer activity has been associated with chromatin signatures comprising different types of histone modifications~\cite{heintzman2007distinct, creyghton2010histone, rada2011unique}.
         DNA found in histone methylated regions are wound tightly around histones are typically transcriptionally silent.
         The remodelling of chromatin through histone methylation can alter the accessibility of transcriptional machinery, allowing TFs to reach their target genes~\cite{gibney2010epigenetics, holoch2015rna}. 
@@ -76,6 +77,8 @@
             \caption{a) A diagram of open chromatin. TFs, represented by blue cloud shapes are able to access DNA and bind. b) A diagram of closed chromatin. The nucleosomes are tightly packed and the DNA is not accessible to TFs for binding.}
             \label{fig:openclose}
         \end{figure}
+        
+         With the increasing amount of available data that describes gene expression, the modern practice of computational identification for enhancer regions involves the incorporation of various data types. Some example of data types that have been used are conservation \cite{visel2007enhancer}, chromatin profile of histone markers \cite{won2010genome} and chromatin accessibility combined with information about general transcription factor binding sites (TFBS) \cite{boyle2010high}. We are interested in the extension of computational and statistical methods or the development of new ones. Each of these data types provides different information about the state of DNA and the more relevant ones more relevant to this project will be discussed. 
         % TBA: spcecificity of heart enhancers and examples
 
         % We are kinda interested in cardiac tissue because our collaborats are researching this. (Really shallow)

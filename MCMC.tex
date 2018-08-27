@@ -68,7 +68,7 @@ The irreducibility condition intuitively means that all states are reachable fro
  \caption{Metropolis-Hastings Algorithm}
 \end{algorithm}
 
-	\paragraph{Gibbs Sampler Algorithm}~\\
+	\paragraph{Gibbs Sampler Algorithm}\label{ssSec:GS}~\\
 \noindent
 In general, the quantity $x$ is a vector and standard MH updates all the components at once. In contrast to this, there exist a class of MCMC methods known as Gibbs samplers, that iteratively update the components of $x$. The Gibbs sampler as presented by Geman and Geman~\cite{geman1984stochastic} is an example of one of these and can be shown to be a special case of single component MH~\cite{gilks1995markov}. 
 % Rather than updating the entirety of $x$ as in the MH Algorithm, there exist a class of MCMC algorithms that update components of $x$ in an iterative fashion, the most popular of these being the Gibbs Sampler, originally formulated by Geman and Geman \cite{geman1984stochastic}. 
@@ -91,7 +91,7 @@ Introducing the notation $x_{t,-i} = (x_{t,-i},\ldots x_{t,i-1}, x_{t,i+1} \ldot
   \caption{Gibbs Sampling Algorithm}
 \end{algorithm}
 
-	\paragraph{Generalized Gibbs Sampler Algorithm}~\\
+	\paragraph{Generalized Gibbs Sampler Algorithm}\~\\
 \noindent
 Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but MCMC methods such as reversible jump MCMC by Green~\cite{green1995reversible} and the Generalised Gibbs Sampler (GGS), presented by Keith \emph{et al.}~\cite{keith2004generalized} were developed for this situation. The GGS will be discussed in detail here as this sampler has been used in the past for the identification of putative non-coding functional elements and the investigation of genomic structure~\cite{algama2014drosophila}.%{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
 Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generates a Markov Chain in the set $\mathscr U \subseteq \mathscr I \times \mathscr X$. Where $\mathscr I$ denotes the index set; a set that keeps indices of the type of transitions available at each step of the chain. The set $\mathscr U$ must be chosen such that the projections of $\mathscr U$ on the sets $\mathscr I$ and $\mathscr X$ are onto. The algorithm functions in two steps: the \textbf{Q Step} and the \textbf{R Step}, detailed below. 
