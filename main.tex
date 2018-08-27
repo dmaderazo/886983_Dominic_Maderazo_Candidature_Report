@@ -1,11 +1,14 @@
 \documentclass[12pt,a4paper]{article}
 \author{D Maderazo}
-\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz, pgfgantt, epstopdf}
+\usepackage{amsmath, amsthm, amssymb, textcomp, enumerate, multicol, fancyhdr, varwidth, graphicx, color, mathrsfs, tikz, pgfgantt, epstopdf, multirow, oubraces}
 \usepackage[left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
 \usepackage{amsfonts, float}
 \usepackage[]{algorithm2e}
+\usepackage{blkarray}
 \usepackage{csquotes}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx,ragged2e,booktabs,caption}
 
 \usepackage{xcolor,colortbl}
 
@@ -85,15 +88,18 @@
     %         > MEME
     
     \tableofcontents
-    Things to do:
-    \begin{enumerate}
-        \item Find first mention of TFBSs
-        \item Add table of figures
-        \item First definition for Acronyms
-        \item HMM picture
-        \item Think about positioning of Sequence alignment
-        \item Dependencies for Basic segmentation model
-    \end{enumerate}
+    \listoffigures
+ 
+\listoftables
+    % Things to do:
+    % \begin{enumerate}
+    %     \item Find first mention of TFBSs
+    %     \item Add table of figures
+    %     \item First definition for Acronyms
+    %     \item HMM picture
+    %     \item Think about positioning of Sequence alignment
+    %     \item Dependencies for Basic segmentation model
+    % \end{enumerate}
     \section{Literature Review}
         \subsection{Biological Background}
         \input{Enhancers}
@@ -104,7 +110,7 @@
         \input{HeartStuff}
         \subsection{Mathematical Techniques}
         \label{sSec:mathematical}
-        A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. After an introduction Markov chains and paramater estimation necessary for a more detailed discussion of the mathematics underlying the computational methods discussed in Section~\ref{sSec:mathematical}. In this section there will be a discussion of HMMs, alignment based and alignment free sequence comparison. These methods are chosen because of how they are able to ChromHMM is a great example of incorporating epigenetic sequence information, while alignment based and alignment free methods re able to use ideologies of comparative genomics effectively. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification, but they will not be discussed here.%They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. 
+        A focus will be placed on those techniques that are comparative in nature and those that are able to take into account epigenetic markers as input. After an introduction Markov chains and paramater estimation necessary for a more detailed discussion of the mathematics underlying the computational methods presented in Section~\ref{sSec:computational}. In this section there will be a discussion of HMMs, alignment based and alignment free sequence comparison. These methods are chosen because of how they are able to ChromHMM is a great example of incorporating epigenetic sequence information, while alignment based and alignment free methods re able to use ideologies of comparative genomics effectively. It is important to mention the MEME family of algorithms as the method is prevalent in the field of TFBS identification, but they will not be discussed here. %They will not be discussed here as they do not take into account available epigenetic information, nor are they comparative. 
         Interested readers are directed to the MEME suite website (\texttt{http://meme-suite.org/}) and Section~8.5-6 of Parida~\cite{parida2007pattern}. 
 
             % \subsubsection{k-Means Clustering}
@@ -142,7 +148,7 @@
         
     % \section{Preliminary Data}
     \section{Relevance of study}
-        There is some mystery surrounding cardiac enhancers as they are not conserved in the same way that enhancers in other tissue may be, yet are still able to retain function~\cite{blow2010chip}. Being able to rank the importance of enhancers has been done in other tissue in the past by using conservation as a metric, but a lack of conservation for cardiac enhancers poses a problem.
+        There is some mystery surrounding cardiac enhancers as they are not conserved in the same way that enhancers in other tissue may be, yet are still able to retain function~\cite{harvey1996nk, blow2010chip}. Being able to rank the importance of enhancers has been done in other tissue in the past by using conservation as a metric, but a lack of conservation for cardiac enhancers poses a problem.
         The aim of the project is to extend existing methods for the computational identification of conserved developmental cardiac enhancers or the development of new ones that are able to rank the importance of enhancers. To the extent that the literature was reviewed, there appears to be a gap in computational methods that function this way in cardiac specific tissue.
         
         We have access to ChIP-Seq H3K4me1 data collected by collaborators for different species in heart tissue in conjunction with those that are available in public databases, at a variety of developmental stages. This type of methylation has been used to identify active and primed enhancers, but it is poorly understood whether H3K4me1 influences, is influenced by or correlates enhancer activity~\cite{rada2018h3k4me1}. The methylation of this particular site is often associated with promoter regions of actively being transcribed genes~\cite{barski2007high}. We would like to develop methods that are able to use this data for the computational identification of heart enhancers or extend existing methods to include this data. Whatever methods are developed, it is aimed to be published in the public domain to be used as a tool for bioinformatics and applicable in different tissues specific contexts.  

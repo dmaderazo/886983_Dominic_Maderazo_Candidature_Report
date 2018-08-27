@@ -8,18 +8,19 @@
 The main idea behind MCMC is generating a Markov chain so that the limiting distribution of $X_t$ as $t\rightarrow\infty$ is some $\pi$. 
 In practice, this $\pi$ is the posterior distribution obtained for some quantities of interest in a Bayesian framework. 
 Ensuring that the distribution of $X$ converges to $\pi$, the chain must be constructed with certain properties. However, to describe these mathematically it is necessary to define the probability that the chain moves from state $i$ to state $j$ in $t$ steps as $ P_{ij}(t) = P(X_t = j | X_0 = i)$
-and the first return time to state $i$ to be $\tau_{i} = \min\{t>0:X_t = i|X_0 = i\}$
+and the first return time to state $i$ to be $\tau_{i} = \min\{t>0:X_t = i|X_0 = i\}$. A Markov chain is called:
     \begin{enumerate}[(i)]
-        \item a \textbf{positive recurrent} Markov chain is one with the propery
+        \item \textbf{positive recurrent} if it has the propery
             \begin{enumerate}
-                \item $E[\tau_{i}] < \infty ,\, \forall i$
+                \item $E[\tau_{i}] < \infty ,\, \forall i$.
             \end{enumerate}
         
-        \item A Markov chain is called \textbf{irreducible} if $\forall~i,j, \exists~t > 0$ such that $P_{ij}(t) > 0$.
+        \item \textbf{irreducible} if $\forall~i,j, \exists~t > 0$ such that $P_{ij}(t) > 0$.
         % \item An irreducible chain is \textbf{recurrent} if $P(\tau_{ii} < \infty) = 1$ for some $i$.
         % \item An irreducible recurrent chain is called \textbf{positive recurrent} if $E[\tau_{ii}]<\infty$ for some $i$.
-        \item An irreducible chain is \textbf{aperiodic} if for some $i$
-            $$gcd\{n>0:P(X_n = i|X_0 = i) > 0\} =1. $$
+        \item textbf{aperiodic} if for some $i$
+            $$gcd\{n>0:P(X_n = i|X_0 = i) > 0\} =1 $$
+            when the chain is irreducible.
     \end{enumerate}
 The irreducibility condition intuitively means that all states are reachable from any starting state in a finite number of steps, while requiring aperiodicity means that the chain will not oscillate between a subset of states in a periodic manner and positive recurrence guarantees a stationary distribution. A Markov chain constructed with all three of these properties is what is desired for the purposes for MCMC.
 % 	{\color{red}Apparently we only ever make Markov Chains that are reversible. I think this might be so that the detailed balance equations hold, which is sufficient condition for ergodicity(?)}
@@ -91,7 +92,7 @@ Introducing the notation $x_{t,-i} = (x_{t,-i},\ldots x_{t,i-1}, x_{t,i+1} \ldot
   \caption{Gibbs Sampling Algorithm}
 \end{algorithm}
 
-	\paragraph{Generalized Gibbs Sampler Algorithm}\~\\
+	\paragraph{Generalized Gibbs Sampler Algorithm}~\\
 \noindent
 Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but MCMC methods such as reversible jump MCMC by Green~\cite{green1995reversible} and the Generalised Gibbs Sampler (GGS), presented by Keith \emph{et al.}~\cite{keith2004generalized} were developed for this situation. The GGS will be discussed in detail here as this sampler has been used in the past for the identification of putative non-coding functional elements and the investigation of genomic structure~\cite{algama2014drosophila}.%{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
 Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generates a Markov Chain in the set $\mathscr U \subseteq \mathscr I \times \mathscr X$. Where $\mathscr I$ denotes the index set; a set that keeps indices of the type of transitions available at each step of the chain. The set $\mathscr U$ must be chosen such that the projections of $\mathscr U$ on the sets $\mathscr I$ and $\mathscr X$ are onto. The algorithm functions in two steps: the \textbf{Q Step} and the \textbf{R Step}, detailed below. 

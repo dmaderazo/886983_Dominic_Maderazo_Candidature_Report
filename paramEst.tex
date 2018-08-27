@@ -1,14 +1,14 @@
 \paragraph{Maximum Likelihood Estimation} ~\\
-\noindent Maximum likelihood estimation is a frequentist statistical technique for inferring parameters. Given a density $f(x|\theta)$, and a set of sample values $x_i,\ldots,x_n$, the likelihood function is defined as  
+\noindent Maximum likelihood estimation is a frequentist statistical technique for inferring parameters. Proceeding with notation from Hoel, Port \& Stone~\cite{hoel1971introduction}, given a density $f(x|\theta)$, and a set of sample values $x_i,\ldots,x_n$, the likelihood function is defined as  
 	\begin{equation}
-		p(\theta|D) = \prod_{i=1}^{n}f(x_i|\theta)
+		L(\theta|D) = \prod_{i=1}^{n}f(x_i|\theta)
 	\end{equation}
-where $D$ denotes the collection of data. The maximum likelihood estimate of the parameter $\theta$, which will be denoted by $\hat{\theta}$ is the value that maximizes $L(\theta|D)$. For simple problems analytic solutions may exist. In practice, such solutions are intractable and computational methods used instead.
+where $D$ denotes the collection of data. The maximum likelihood estimate of the parameter $\theta$, which is the value of $\theta$ that maximizes $L(\theta|D)$. For simple problems analytic solutions may exist. In practice, such solutions are intractable and computational methods used instead.
 
 \paragraph{Bayesian Estimation}~\\
-\noindent The advantage using a Bayesian framework is that rather than giving point estimates for quantities of interest, we are working in distributions and are able to give a have a measure of uncertainty. Given some prior distribution (belief) about our parameter $p(\theta)$ and the likelihood of the data, given the parameters $p(D|\theta)$ we can obtain what is known as the posterior distribution $ p(\theta|D)$ of the parameters given the data 
+\noindent The advantage using a Bayesian framework is that rather than giving point estimates for quantities of interest, we are working in distributions and are able to give a have a measure of uncertainty. Given some prior distribution (belief) about our parameter $p(\theta)$ and the likelihood of the data, given the parameters $L(\theta|D)$ we can obtain what is known as the posterior distribution $ p(\theta|D)$ of the parameters given the data 
     \begin{equation}
-        p(\theta|D) = \frac{p(D|\theta)p(\theta)}{p(D)}
+        p(\theta|D) = \frac{L(\theta|D)p(\theta)}{p(D)}
     \end{equation}
 In Bayesian inference, the marginal likelihood $p(D)$ is some constant and the rule is often written as 
     \begin{equation}

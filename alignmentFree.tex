@@ -19,8 +19,14 @@ For convenience, define $\bar{n_1} = n_1 - k + 1$ and $\bar{n_2} = n_2 - k + 1$.
  $k$-mer is found starting in position $i$ and the corresponding position $j$ in $\mathbf{B}$ where the same $k$-mer may be found. 
 Defining $Y_{(i,j)}$ to be the indicator variable for the $k$-mer starting at $A_i$ matching with the $k$-mer starting at $B_i$, the $D_2$ score of $\mathbf{A}$ and $\mathbf{B}$ can be stated as 
 	\begin{equation}
-		D_2(A,B) = \sum_{(i,j)\in I }Y_{(i,j)}.\label{eqn:AF}
+		D_2(\textbf{A},\textbf{B}) = \sum_{(i,j)\in I }Y_{(i,j)}.\label{eqn:AF}
 	\end{equation}
+
+As an example, consider the pair of words: 
+\begin{center}
+    \textbf{A} = \texttt{ESTHER}, \hspace{0.2\textwidth} \textbf{B} = \texttt{THEMES}.
+\end{center}
+Looking at $k = 2$, there are multiple $2$-mers possible, but the ones of interest are the ones that match between the two words: \texttt{ES} and \texttt{TH}. The first $2$-mer, \texttt{ES} occurs in position 1 of \textbf{A} and position 5 of \textbf{B}, while \texttt{TH} occurs in position 3 of \textbf{A} and position 1 of \textbf{B}. For this pair of words, the $I = \{(1,5),(3,1)\}$ and $D_2(\textbf{A},\textbf{B}) = 2$. 
 
 A distribution for the $k$-mers can be obtained and compared to reveal structural features of the sequence. It should be noted that other alignment free sequence comparison methods exist for the purposes of putative functional element identification~\cite{arunachalam2010alignment, kantorovitz2007statistical, reinert2009alignment, wang2013cpat}. 
 % The following is also convenient for analytical purposes. For a given $v = (i,j) \in I$ and define
