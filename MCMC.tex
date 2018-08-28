@@ -30,7 +30,7 @@ The irreducibility condition intuitively means that all states are reachable fro
 \noindent
 	Presented in 1970 by Hastings \cite{hastings1970monte}, it is an extension of the algorithm originally put forth by Metropolis in 1953 \cite{metropolis1953equation}.
 	The steps for the algorithm, also presented in Algorithm~\ref{alg:MetHast}, are as follows. Let $\pi(x)$ be the target density (up to a constant), defined on some set ${\mathscr X}$.
-	To initialize the algorithm let $x_0$ to be the first sample, chosen arbitrarily. In each iteration $g(y|x)$ 
+	To initialise the algorithm let $x_0$ to be the first sample, chosen arbitrarily. In each iteration $g(y|x)$ 
 % 	({\color{red}Is it more conventional to write $g(Y|X)$ or does it not matter as long as it is consistent?}), 
     known as the {transition kernel} is sampled from to generate a candidate point. The candidate point $y$ is accepted with probability 
 	    \begin{equation}
@@ -92,7 +92,7 @@ Introducing the notation $x_{t,-i} = (x_{t,-i},\ldots x_{t,i-1}, x_{t,i+1} \ldot
   \caption{Gibbs Sampling Algorithm}
 \end{algorithm}
 
-	\paragraph{Generalized Gibbs Sampler Algorithm}~\\
+	\paragraph{Generalised Gibbs Sampler Algorithm}~\\
 \noindent
 Samplers based on MH or Gibbs can work very well when the distributions of interest are defined on spaces of fixed dimension. In the context of gene analysis, sometimes the distributions that need to be sampled from are defined on spaces without a fixed dimension. Standard MH or Gibbs fail in spaces like this but MCMC methods such as reversible jump MCMC by Green~\cite{green1995reversible} and the Generalised Gibbs Sampler (GGS), presented by Keith \emph{et al.}~\cite{keith2004generalized} were developed for this situation. The GGS will be discussed in detail here as this sampler has been used in the past for the identification of putative non-coding functional elements and the investigation of genomic structure~\cite{algama2014drosophila}.%{\color{red}{It can be shown that reversible jump is a speciial case (MAYBE MENTION THIS AT END?)}} 
 Rather than creating a Markov Chain on ${\mathscr X}$ this algorithm is generates a Markov Chain in the set $\mathscr U \subseteq \mathscr I \times \mathscr X$. Where $\mathscr I$ denotes the index set; a set that keeps indices of the type of transitions available at each step of the chain. The set $\mathscr U$ must be chosen such that the projections of $\mathscr U$ on the sets $\mathscr I$ and $\mathscr X$ are onto. The algorithm functions in two steps: the \textbf{Q Step} and the \textbf{R Step}, detailed below. 
@@ -148,5 +148,5 @@ Repeating the Q step and R step of the algorithm generates a Markov chain $\{\*u
     Set $\*u_{t+1} = \*w$\;
     Increment $t$\;
  }
-  \caption{Algorithm for the generalized Gibbs Sampler}
+  \caption{Algorithm for the Generalised Gibbs Sampler}
 \end{algorithm}

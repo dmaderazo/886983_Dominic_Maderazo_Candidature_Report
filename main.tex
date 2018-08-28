@@ -16,8 +16,8 @@
 \newtheorem*{mydef}{Definition}
 \newtheorem{mythm}{Theorem}
 \pagestyle{fancy}
-\lhead{}
-\rhead{Dominic Maderazo}
+\lhead{\rightmark}
+\rhead{}
 \newcommand*\dee{\mathop{}\!\mathrm{d}}
 \newcommand*\del{\mathop{}\!\partial}
 \def\*#1{\mathbf{#1}}
@@ -100,6 +100,15 @@
     %     \item Think about positioning of Sequence alignment
     %     \item Dependencies for Basic segmentation model
     % \end{enumerate}
+    \newpage
+    \vspace{\fill}
+    \begin{abstract}
+    Various proteins are required for growth, function and maintenance of cells in an organism. In eukaryotic cells, proteins are synthesised from genes in the DNA. Enhancers are important elements required for the regulation of transcription in the process of protein synthesis consisting of clusters of non-coding binding sites for transcription factors. A review of the biology is presented along side with a discussion of existing methods for computational identification of these enhancer regions. 
+    
+    In this study, I will focus on the development of computational methods for the identification of enhancer regions. I motivate the need for the development of these computational methods with the desire to incorporate epigenetic data for the identification of enhancers that are important for cardiac formation. Being able to identify these enhancers will provide more detail about the difference in heart formation between species.
+    \end{abstract}
+    \vspace{\fill}
+    \newpage
     \section{Literature Review}
         \subsection{Biological Background}
         \input{Enhancers}
@@ -166,12 +175,13 @@
     
     \input{futureStuff}
     
+    \newpage
     \section{Timeline}
 \definecolor{barblue}{RGB}{153,204,254}
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
 \begin{ganttchart}[
    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
@@ -228,6 +238,8 @@
     \label{fig:gantt}
     \end{figure}
 % \caption{}\\
+
+\newpage
     \bibliographystyle{acm}
 \bibliography{LitReview}
 \end{document}
